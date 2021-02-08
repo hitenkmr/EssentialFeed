@@ -15,22 +15,26 @@ public final class RemoteFeedLoader {
     private let url : URL
     private let client : HTTPClient
     
+    public enum Error : Swift.Error {
+        case connectivity
+    }
+    
     public init(url : URL, client : HTTPClient) {
         self.client = client
         self.url = url
     }
     
-    public func load() {
-        client.getFeed(url: url)
+    public func load(completion : @escaping (Error) -> Void = { _ in }) {
+        client.get(url: url, completion: { error in completion(.connectivity)})
     }
 }
 
 /**
  By creating a clean seperation with protocols, we made the RemoteFeedLoader more flexible, open for extension and more testable
  
-The HTTPClient does not need to be a class . it is just a contract defining which external functinality the RemoteFeedLoader needs, so a protocol is more suitable way to define it.
-*/
+ The HTTPClient does not need to be a class . it is just a contract defining which external functinality the RemoteFeedLoader needs, so a protocol is more suitable way to define it.
+ */
 
 public protocol HTTPClient {
-    func getFeed(url : URL)
+    func get(url : URL, completion : @escaping (Error) -> Void)
 }
