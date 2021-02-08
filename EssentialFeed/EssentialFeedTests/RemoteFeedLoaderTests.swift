@@ -11,12 +11,17 @@ import XCTest
 
 class HttpClientSpy: HTTPClient {
     
-    var requestedUrls = [URL]()
     var completions = [(Error) -> Void]()
     
+    private var messages = [(url : URL, completion : ((Error)->Void))]()
+    
+    var requestedUrls : [URL] {
+        return messages.map({ $0.url })
+    }
+
     func get(url: URL, completion: @escaping (Error) -> Void) {
+        messages.append((url, completion))
         completions.append(completion)
-        self.requestedUrls.append(url)
     }
     
     func complete(with error : Error, index : Int = 0) {
