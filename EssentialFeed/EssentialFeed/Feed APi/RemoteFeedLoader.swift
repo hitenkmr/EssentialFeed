@@ -10,17 +10,17 @@ import Foundation
 /**
  The RemoteFeedLoader does not need to locate or instantiate HTTPClient instance. Instead we can make our code more modular by injecting HTTPClient as a dependency.
  */
-class RemoteFeedLoader {
+public final class RemoteFeedLoader {
     
-    let client : HTTPClient
-    let url : URL
+    private let url : URL
+    private let client : HTTPClient
     
-    init(url : URL, client : HTTPClient) {
+    public init(url : URL, client : HTTPClient) {
         self.client = client
         self.url = url
     }
     
-    func load() {
+    public func load() {
         client.getFeed(url: url)
     }
 }
@@ -31,6 +31,6 @@ class RemoteFeedLoader {
 The HTTPClient does not need to be a class . it is just a contract defining which external functinality the RemoteFeedLoader needs, so a protocol is more suitable way to define it.
 */
 
-protocol HTTPClient {
+public protocol HTTPClient {
     func getFeed(url : URL)
 }

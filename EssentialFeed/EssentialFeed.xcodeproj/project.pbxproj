@@ -103,6 +103,7 @@
 		FA08B30725D00D3600C38073 /* EssentialFeed */ = {
 			isa = PBXGroup;
 			children = (
+				FA14661F25D17CAA00BD2C88 /* Feed APi */,
 				FA08B33C25D00D9800C38073 /* Feed Feature */,
 				FA08B33B25D00D7F00C38073 /* AppDelegate */,
 				FA08B30C25D00D3600C38073 /* ViewController.swift */,
@@ -145,9 +146,16 @@
 		FA08B33C25D00D9800C38073 /* Feed Feature */ = {
 			isa = PBXGroup;
 			children = (
-				FA08B33D25D00DE000C38073 /* RemoteFeedLoader.swift */,
 			);
 			path = "Feed Feature";
+			sourceTree = "<group>";
+		};
+		FA14661F25D17CAA00BD2C88 /* Feed APi */ = {
+			isa = PBXGroup;
+			children = (
+				FA08B33D25D00DE000C38073 /* RemoteFeedLoader.swift */,
+			);
+			path = "Feed APi";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

@@ -22,14 +22,15 @@ class HttpClientSpy: HTTPClient {
 class RemoteFeedLoaderTests: XCTestCase {
 
     func test_init_doesNotRequestDataFromUrl() {
-        let sut = makeSUT()
-        XCTAssertNil(sut.client.requestedUrl)
+        let (_, client) = makeSUT()
+        XCTAssertNil(client.requestedUrl)
     }
     
     func test_init_RequestDataFromUrl() {
-        let url = URL(string: "http://a-someurl.com")!
-         let sut = makeSUT(url: url)
-        XCTAssertEqual(url, sut.sut.url)
+        let url = URL(string: "http://a-given-url.com")!
+         let (sut, client) = makeSUT(url: url)
+        sut.load()
+        XCTAssertEqual(client.requestedUrl, url)
     }
     
     //MARK: HELPERS
