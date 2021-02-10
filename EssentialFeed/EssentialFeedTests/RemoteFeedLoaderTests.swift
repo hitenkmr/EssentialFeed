@@ -25,9 +25,9 @@ class HttpClientSpy: HTTPClient {
         messages[index].completion(HTTPClientResult.failure(error))
     }
     
-    func complete(withStatusCode : Int, at index : Int = 0) {
+    func complete(withStatusCode : Int, data : Data = Data(), at index : Int = 0) {
         let response = HTTPURLResponse(url: messages[index].url, statusCode: withStatusCode, httpVersion: nil, headerFields: nil)!
-        messages[index].completion(.success(response))
+        messages[index].completion(.success(data, response))
     }
 }
 
@@ -72,6 +72,15 @@ class RemoteFeedLoaderTests: XCTestCase {
             client.complete(withStatusCode: code, at: index)
             XCTAssertEqual(capturesErrors, [.invalidData])
         }
+    }
+    
+    func test_load_deliversInvalidDataOnNon200HTTPResponse() {
+        let (sut, client) = makeSUT()
+        var capturedErrors = [RemoteFeedLoader.Error]()
+        sut.load(completion: { capturedErrors.append($0) })
+        let invalidData : Data = "".data(using: .utf8)!
+        client.complete(withStatusCode: 200, data: invalidData, at: 0)
+        XCTAssertEqual(capturedErrors, [.invalidData])
     }
     
     //MARK: HELPERS
