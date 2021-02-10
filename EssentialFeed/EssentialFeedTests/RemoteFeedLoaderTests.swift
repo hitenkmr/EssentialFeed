@@ -10,22 +10,24 @@ import XCTest
 @testable import EssentialFeed
 
 class HttpClientSpy: HTTPClient {
-    
-    var completions = [(Error) -> Void]()
-    
-    private var messages = [(url : URL, completion : ((Error)->Void))]()
+        
+    private var messages = [(url : URL, completion : ((Error?, HTTPURLResponse?)->Void))]()
     
     var requestedUrls : [URL] {
         return messages.map({ $0.url })
     }
 
-    func get(url: URL, completion: @escaping (Error) -> Void) {
+    func get(url: URL, completion: @escaping (Error?, HTTPURLResponse?) -> Void) {
         messages.append((url, completion))
-        completions.append(completion)
     }
     
     func complete(with error : Error, index : Int = 0) {
-        completions[index](error)
+        messages[index].completion(error, nil)
+    }
+    
+    func complete(withStatusCode : Int, at index : Int = 0) {
+        let response = HTTPURLResponse(url: messages[index].url, statusCode: withStatusCode, httpVersion: nil, headerFields: nil)
+        messages[index].completion(nil, response)
     }
 }
 
@@ -54,11 +56,20 @@ class RemoteFeedLoaderTests: XCTestCase {
     
     func test_load_deliversErrorOnClientError() {
         let (sut, client) = makeSUT()
-        var capturedError = [RemoteFeedLoader.Error]()
-        sut.load(completion: { error in capturedError.append(error) })
+        var capturedErrors = [RemoteFeedLoader.Error]()
+        sut.load(completion: { capturedErrors.append($0) })
         let clientError = NSError(domain: "Test", code: 0, userInfo: nil)
         client.complete(with: clientError, index: 0)
-        XCTAssertEqual(capturedError, [.connectivity])
+        XCTAssertEqual(capturedErrors, [.connectivity])
+    }
+    
+    func test_load_deliversErrorOnNon200HTTPResponse() {
+        let (sut, client) = makeSUT()
+        var capturesErrors = [RemoteFeedLoader.Error]()
+        sut.load(completion: { capturesErrors.append($0) })
+        client.complete(withStatusCode: 400)
+        XCTAssertEqual(capturesErrors, [.invalidData])
+        
     }
     
     //MARK: HELPERS
