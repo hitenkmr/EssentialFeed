@@ -91,8 +91,8 @@ class RemoteFeedLoaderTests: XCTestCase {
     
     func test_load_deliversItemsOn200ResponseCodeWithJSONItems() {
         let (sut, client) = makeSUT()
-        let item1 = makeFeedItem(id: UUID(), description: "a desc", location: "a location", imageUrl: "http://some-a.com")
-        let item2 = makeFeedItem(id: UUID(), description: "b desc", location: "b location", imageUrl: "http://some-b.com")
+        let item1 = makeFeedItem(id: UUID(), description: "a desc", location: "a location", imageUrl: URL(string: "http://some-a.com")!)
+        let item2 = makeFeedItem(id: UUID(), description: "b desc", location: "b location", imageUrl: URL(string: "http://some-b.com")!)
         expect(sut, toCompleteWithResult: .success([item1.modal, item2.modal])) {
             let data = makeJsonData(itemsJson: [item1.json, item2.json])
             client.complete(withStatusCode: 200, data: data, at: 0)
@@ -114,9 +114,9 @@ class RemoteFeedLoaderTests: XCTestCase {
         XCTAssertEqual(capturedResults, [result], message, file: file, line: line)
     }
     
-    private func makeFeedItem(id: UUID, description : String? = nil, location : String? = "a location", imageUrl: String) ->(modal : FeedItem, json : [String : Any]) {
+    private func makeFeedItem(id: UUID, description : String? = nil, location : String? = "a location", imageUrl: URL) ->(modal : FeedItem, json : [String : Any]) {
         let item = FeedItem(id: id, description: description, location: location, imageUrl: imageUrl)
-        let itemJson = ["id" : item.id.uuidString, "description" : item.description, "url" : item.imageUrl, "location" : item.location].reduce(into: [String : Any](), { (acc, e) in
+        let itemJson = ["id" : item.id.uuidString, "description" : item.description, "image" : item.imageUrl.absoluteString, "location" : item.location].reduce(into: [String : Any](), { (acc, e) in
             if let value = e.value { acc[e.key] = value }
         })
         return (item, itemJson)
