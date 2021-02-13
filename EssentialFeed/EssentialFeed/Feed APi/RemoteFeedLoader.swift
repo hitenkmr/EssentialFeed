@@ -33,11 +33,15 @@ public final class RemoteFeedLoader {
     public func load(completion : @escaping (Result) -> Void) {
         client.get(url: url, completion: { result in
             switch result {
-            case let.success(data, _):
-                do {
-                    let items = try JSONDecoder().decode(FeedItems.self, from: data)
-                    completion(.success(items.items))
-                } catch  {
+            case let.success(data, response):
+                if response.statusCode == 200 {
+                    do {
+                        let items = try JSONDecoder().decode(FeedItems.self, from: data)
+                        completion(.success(items.items))
+                    } catch  {
+                        completion(.failure([.invalidData]))
+                    }
+                } else {
                     completion(.failure([.invalidData]))
                 }
             case let .failure(_):
