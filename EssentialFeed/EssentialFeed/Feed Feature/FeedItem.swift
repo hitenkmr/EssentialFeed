@@ -2,7 +2,7 @@
 //  FeedItem.swift
 //  EssentialFeed
 //
-//  Created by Mac Book on 13/02/21.
+//  Created by Hitender Kumar on 13/02/21.
 //
 
 import Foundation

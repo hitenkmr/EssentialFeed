@@ -19,6 +19,7 @@
 		FA08B34325D0D7D900C38073 /* RemoteFeedLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA08B34225D0D7D900C38073 /* RemoteFeedLoaderTests.swift */; };
 		FAEDF49425D7A93400D13C2E /* FeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEDF49325D7A93400D13C2E /* FeedItem.swift */; };
 		FAEDF4A025D81A8C00D13C2E /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEDF49F25D81A8C00D13C2E /* HTTPClient.swift */; };
+		FAEDF4B225D81DA400D13C2E /* FeedItemsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEDF4B125D81DA400D13C2E /* FeedItemsMapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		FA14662625D18C2100BD2C88 /* EssentialFeed.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EssentialFeed.entitlements; sourceTree = "<group>"; };
 		FAEDF49325D7A93400D13C2E /* FeedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItem.swift; sourceTree = "<group>"; };
 		FAEDF49F25D81A8C00D13C2E /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
+		FAEDF4B125D81DA400D13C2E /* FeedItemsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItemsMapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +164,7 @@
 			children = (
 				FA08B33D25D00DE000C38073 /* RemoteFeedLoader.swift */,
 				FAEDF49F25D81A8C00D13C2E /* HTTPClient.swift */,
+				FAEDF4B125D81DA400D13C2E /* FeedItemsMapper.swift */,
 			);
 			path = "Feed Api";
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 				FA08B33E25D00DE000C38073 /* RemoteFeedLoader.swift in Sources */,
 				FA08B30D25D00D3600C38073 /* ViewController.swift in Sources */,
 				FAEDF4A025D81A8C00D13C2E /* HTTPClient.swift in Sources */,
+				FAEDF4B225D81DA400D13C2E /* FeedItemsMapper.swift in Sources */,
 				FA08B30925D00D3600C38073 /* AppDelegate.swift in Sources */,
 				FAEDF49425D7A93400D13C2E /* FeedItem.swift in Sources */,
 				FA08B30B25D00D3600C38073 /* SceneDelegate.swift in Sources */,
