@@ -115,7 +115,7 @@ class RemoteFeedLoaderTests: XCTestCase {
     //MARK: HELPERS
     
     private func failure(_ error : RemoteFeedLoader.Error) -> RemoteFeedLoader.Result {
-        return RemoteFeedLoader.Result.failure(RemoteFeedLoader.Error.connectivity)
+        return RemoteFeedLoader.Result.failure(error)
     }
     
     private func makeSUT(url : URL = URL(string: "http://a-url.com")!, file: StaticString = #filePath, line: UInt = #line) -> (sut : RemoteFeedLoader, client : HttpClientSpy) {
