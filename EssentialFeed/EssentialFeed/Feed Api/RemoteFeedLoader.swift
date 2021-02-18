@@ -10,7 +10,7 @@ import Foundation
 /**
  The RemoteFeedLoader does not need to locate or instantiate HTTPClient instance. Instead we can make our code more modular by injecting HTTPClient as a dependency.
  */
-public final class RemoteFeedLoader {
+public final class RemoteFeedLoader : FeedLoader {
     
     private let url : URL
     private let client : HTTPClient
