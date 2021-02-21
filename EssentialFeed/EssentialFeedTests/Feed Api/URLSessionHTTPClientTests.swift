@@ -75,14 +75,8 @@ class URLSessionHTTPClientTests: XCTestCase {
     
     private func makeSUT(line : UInt = #line, file : StaticString = #file) -> URLSessionHTTPClient {
         let sut = URLSessionHTTPClient()
-        trackMemoryLeak(instance: sut, line :line, file : file)
+        trackForMemoryLeaks(instance: sut, file : file, line :line)
         return sut
-    }
-    
-    func trackMemoryLeak(instance : AnyObject, line : UInt = #line, file : StaticString = #file) {
-        addTeardownBlock { [weak instance] in
-            XCTAssertNil(instance, "Instance should have been deallocated. Potential memory leak", file : file, line : line)
-        }
     }
 }
 
