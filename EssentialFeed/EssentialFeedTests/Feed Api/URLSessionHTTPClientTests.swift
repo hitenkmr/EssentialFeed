@@ -16,10 +16,14 @@ class URLSessionHTTPClient {
         self.session = session
     }
     
+    struct UnExpectedValuesRepresentation : Error {}
+    
     func get(from url : URL, completion : @escaping (HTTPClientResult) -> Void) {
         self.session.dataTask(with: url, completionHandler: { data, response, error in
             if let error = error {
                 completion(.failure(error))
+            } else {
+                completion(.failure(UnExpectedValuesRepresentation()))
             }
         }).resume()
     }
@@ -51,8 +55,8 @@ class URLSessionHTTPClientTests: XCTestCase {
     func test_getFromURL_failsOnRequestError() {
         let error = NSError(domain: "error completion call", code: 1)
         
-        URLProtocolStub.stub(error: error)
- 
+        URLProtocolStub.stub(data: nil, response: nil, error: error)
+
         let exp = expectation(description: "wait for compeltion")
         
         makeSUT().get(from: anyUrl()) { result in
@@ -66,6 +70,23 @@ class URLSessionHTTPClientTests: XCTestCase {
             exp.fulfill()
         }
         
+        wait(for: [exp], timeout: 1.0)
+    }
+    
+    func test_getFromURL_failsOnAllNilValues() {
+        URLProtocolStub.stub(data: nil, response: nil, error: nil)
+
+        let exp = expectation(description: "wait for compeltion")
+        
+        makeSUT().get(from: anyUrl()) { result in
+            switch result {
+            case .failure:
+                break
+            default:
+                XCTFail("Expected failure, got result \(result)")
+            }
+            exp.fulfill()
+        }
         wait(for: [exp], timeout: 1.0)
     }
     
@@ -90,11 +111,13 @@ private class URLProtocolStub: URLProtocol {
     private static var requestObserver : ((URLRequest) -> Void)?
     
     private struct Stub {
+        let data : Data?
+        let response : URLResponse?
         let error : Error?
     }
     
-    static func stub(error : Error? = nil) {
-        stub = .init(error: error)
+    static func stub(data : Data? = nil, response : URLResponse? = nil, error : Error? = nil) {
+        stub = .init(data : data, response : response, error: error)
     }
     
     func some() {
