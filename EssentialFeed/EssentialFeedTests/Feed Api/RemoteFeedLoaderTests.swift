@@ -5,6 +5,7 @@
 //  Created by Hitender Kumar on 07/02/21.
 //
 
+import Foundation
 import UIKit
 import XCTest
 @testable import EssentialFeed
@@ -17,7 +18,7 @@ class HttpClientSpy: HTTPClient {
         return messages.map({ $0.url })
     }
     
-    func get(url: URL, completion: @escaping (HTTPClientResult) -> Void) {
+    func get(from url: URL, completion: @escaping (HTTPClientResult) -> Void) {
         messages.append((url, completion))
     }
     
@@ -78,6 +79,7 @@ class RemoteFeedLoaderTests: XCTestCase {
         expect(sut, toCompleteWith: failure(.invalidData)) {
             let invalidData : Data = "".data(using: .utf8)!
             client.complete(withStatusCode: 200, data: invalidData, at: 0)
+            
         }
     }
     
@@ -155,6 +157,6 @@ class RemoteFeedLoaderTests: XCTestCase {
     
     private func makeJsonData(itemsJson : [[String : Any]]) -> Data {
         let data = try! JSONSerialization.data(withJSONObject: ["items" : itemsJson], options: .prettyPrinted)
-        return data
+         return data
     }
 }

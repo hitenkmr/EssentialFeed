@@ -14,7 +14,7 @@ import Foundation
  */
 
 public protocol HTTPClient {
-    func get(url : URL, completion : @escaping (HTTPClientResult) -> Void)
+    func get(from url : URL, completion : @escaping (HTTPClientResult) -> Void)
 }
 
 public enum HTTPClientResult {
