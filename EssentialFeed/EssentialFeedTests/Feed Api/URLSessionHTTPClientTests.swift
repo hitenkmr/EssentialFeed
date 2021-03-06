@@ -113,7 +113,7 @@ class URLSessionHTTPClientTests: XCTestCase {
             exp.fulfill()
         }
         
-        wait(for: [exp], timeout: 2.0)
+        wait(for: [exp], timeout: 1.0)
         return receivedResult
     }
     
@@ -189,6 +189,11 @@ private class URLProtocolStub: URLProtocol {
     }
     
     override func startLoading() {
+        
+        if let requestObserver = URLProtocolStub.requestObserver {
+            client?.urlProtocolDidFinishLoading(self)
+            return requestObserver(request)
+        }
         
         if let data = URLProtocolStub.stub?.data {
             client?.urlProtocol(self, didLoad: data)
