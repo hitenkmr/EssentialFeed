@@ -14,8 +14,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "FA08B30425D00D3600C38073"
-               BuildableName = "EssentialFeed.app"
+               BlueprintIdentifier = "FA97F4D925F50BAA008BDED6"
+               BuildableName = "EssentialFeed.framework"
                BlueprintName = "EssentialFeed"
                ReferencedContainer = "container:EssentialFeed.xcodeproj">
             </BuildableReference>
@@ -26,37 +26,15 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      codeCoverageEnabled = "YES"
-      onlyGenerateCoverageForSpecifiedTargets = "YES">
-      <CodeCoverageTargets>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "FA08B30425D00D3600C38073"
-            BuildableName = "EssentialFeed.app"
-            BlueprintName = "EssentialFeed"
-            ReferencedContainer = "container:EssentialFeed.xcodeproj">
-         </BuildableReference>
-      </CodeCoverageTargets>
+      shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO"
-            testExecutionOrdering = "random">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "FA08B31A25D00D3B00C38073"
-               BuildableName = "EssentialFeedTests.xctest"
-               BlueprintName = "EssentialFeedTests"
-               ReferencedContainer = "container:EssentialFeed.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "FA1C197D25E3831500D9E04D"
-               BuildableName = "EssentialFeedAPIEndToEndTests.xctest"
-               BlueprintName = "EssentialFeedAPIEndToEndTests"
+               BlueprintIdentifier = "FA97F4E225F50BAA008BDED6"
+               BuildableName = "EssentialFeedTests.xctest"
+               BlueprintName = "EssentialFeedTests"
                ReferencedContainer = "container:EssentialFeed.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -72,16 +50,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "FA08B30425D00D3600C38073"
-            BuildableName = "EssentialFeed.app"
-            BlueprintName = "EssentialFeed"
-            ReferencedContainer = "container:EssentialFeed.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -89,16 +57,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "FA08B30425D00D3600C38073"
-            BuildableName = "EssentialFeed.app"
+            BlueprintIdentifier = "FA97F4D925F50BAA008BDED6"
+            BuildableName = "EssentialFeed.framework"
             BlueprintName = "EssentialFeed"
             ReferencedContainer = "container:EssentialFeed.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
