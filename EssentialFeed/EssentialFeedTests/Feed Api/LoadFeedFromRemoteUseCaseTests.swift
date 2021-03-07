@@ -1,5 +1,5 @@
 //
-//  RemoteFeedLoader.swift
+//  LoadFeedFromRemoteUseCaseTests.swift
 //  EssentialFeedTests
 //
 //  Created by Hitender Kumar on 07/02/21.
@@ -32,7 +32,7 @@ class HttpClientSpy: HTTPClient {
     }
 }
 
-class RemoteFeedLoaderTests: XCTestCase {
+class LoadFeedFromRemoteUseCaseTests: XCTestCase {
     
     func test_init_doesNotRequestDataFromUrl() {
         let (_, client) = makeSUT()
