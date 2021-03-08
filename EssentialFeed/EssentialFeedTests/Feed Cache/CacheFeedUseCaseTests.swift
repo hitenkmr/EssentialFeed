@@ -13,15 +13,16 @@ class LocalFeedLoader {
     private let store: FeedStore
     private let currentDate: () -> Date
     
-    init(store: FeedStore, currentDate: @escaping () -> Date = Date.init) {
+    init(store: FeedStore, currentDate: @escaping () -> Date = Date.init, date :Date = Date()) {
         self.store = store
         self.currentDate = currentDate
     }
     
     func save(_ items: [FeedItem], completion : @escaping (_ error : Error?) -> Void) {
-        store.deleteCachedFeed { [unowned self] (error) in
+        store.deleteCachedFeed { [weak self] (error) in
+            guard let self = self else { return }
             if error == nil {
-                store.insert(items: items, timestamp: self.currentDate(), completion: completion)
+                self.store.insert(items: items, timestamp: self.currentDate(), completion: completion)
             } else {
                 completion(error)
             }
@@ -111,9 +112,22 @@ class CacheFeedUseCaseTests: XCTestCase {
         }
     }
     
+    func test_save_doesNotDeliverDeletionErrorAfterSUTInstanceHasBeenDeallocated() {
+        let store = FeedStoreSpy()
+        var sut: LocalFeedLoader? = LocalFeedLoader(store: store, currentDate: Date.init)
+        
+        var receivedResults = [NSError?]()
+        sut?.save([uniqueItem()], completion: { receivedResults.append($0 as NSError?) })
+        
+        sut = nil
+        store.completeDeletion(with: anyNSError())
+        
+        XCTAssertTrue(receivedResults.isEmpty)
+    }
+    
     //MARK: Helpers
     
-    private func makeSUT(currentDate: @escaping () -> Date = Date.init, file: StaticString = #file, line: UInt = #line) -> (sut: LocalFeedLoader, store: FeedStoreSpy) {
+    private func makeSUT(date : Date = Date(), currentDate: @escaping () -> Date = Date.init, file: StaticString = #file, line: UInt = #line) -> (sut: LocalFeedLoader, store: FeedStoreSpy) {
         let store = FeedStoreSpy()
         let sut = LocalFeedLoader(store: store, currentDate: currentDate)
         trackForMemoryLeaks(instance: store, file: file, line: line)
