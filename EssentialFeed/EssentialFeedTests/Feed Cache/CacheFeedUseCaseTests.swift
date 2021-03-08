@@ -13,12 +13,12 @@ class LocalFeedLoader {
     private let store: FeedStore
     private let currentDate: () -> Date
     
-    init(store: FeedStore, currentDate: @escaping () -> Date = Date.init, date :Date = Date()) {
+    init(store: FeedStore, currentDate: @escaping () -> Date = Date.init, date: Date = Date()) {
         self.store = store
         self.currentDate = currentDate
     }
     
-    func save(_ items: [FeedItem], completion : @escaping (_ error : Error?) -> Void) {
+    func save(_ items: [FeedItem], completion: @escaping (_ error: Error?) -> Void) {
         store.deleteCachedFeed { [weak self] (error) in
             guard let self = self else { return }
             if error == nil {
@@ -127,7 +127,7 @@ class CacheFeedUseCaseTests: XCTestCase {
     
     //MARK: Helpers
     
-    private func makeSUT(date : Date = Date(), currentDate: @escaping () -> Date = Date.init, file: StaticString = #file, line: UInt = #line) -> (sut: LocalFeedLoader, store: FeedStoreSpy) {
+    private func makeSUT(date: Date = Date(), currentDate: @escaping () -> Date = Date.init, file: StaticString = #file, line: UInt = #line) -> (sut: LocalFeedLoader, store: FeedStoreSpy) {
         let store = FeedStoreSpy()
         let sut = LocalFeedLoader(store: store, currentDate: currentDate)
         trackForMemoryLeaks(instance: store, file: file, line: line)
@@ -137,7 +137,7 @@ class CacheFeedUseCaseTests: XCTestCase {
     
     private class FeedStoreSpy: FeedStore {
         
-        enum ReceivedMessage : Equatable {
+        enum ReceivedMessage: Equatable {
             case deleteCachedFeed
             case insert([FeedItem], Date)
         }
@@ -175,7 +175,7 @@ class CacheFeedUseCaseTests: XCTestCase {
         }
     }
     
-    private func expect(_ sut : LocalFeedLoader, toCompleteWithError expectedError: NSError?, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
+    private func expect(_ sut: LocalFeedLoader, toCompleteWithError expectedError: NSError?, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
         let exp = expectation(description: "wait for completion")
         
         var receivedError: Error?
