@@ -11,15 +11,17 @@ import XCTest
 class LocalFeedLoader {
     
     private let store: FeedStore
+    private let currentDate: () -> Date
     
-    init(store: FeedStore) {
+    init(store: FeedStore, currentDate: @escaping () -> Date = Date.init) {
         self.store = store
+        self.currentDate = currentDate
     }
     
     func save(_ items: [FeedItem]) {
         store.deleteCachedFeed { [unowned self] (error) in
             if error == nil {
-                store.insert(items : items)
+                store.insert(items: items, timestamp: self.currentDate())
             }
         }
     }
@@ -34,11 +36,14 @@ class FeedStore {
     
     private var deletionCompletions = [DeletionCompletion]()
     
-    func insert(items : [FeedItem]) {
+    var insertions = [(items: [FeedItem], timestamp: Date)]()
+    
+    func insert(items: [FeedItem], timestamp: Date = Date.init()) {
         insertCallCount += 1
+        insertions.append((items, timestamp))
     }
     
-    func deleteCachedFeed(completion : @escaping DeletionCompletion) {
+    func deleteCachedFeed(completion: @escaping DeletionCompletion) {
         self.deleteCachedFeedCallCount += 1
         deletionCompletions.append(completion)
     }
@@ -90,11 +95,24 @@ class CacheFeedUseCaseTests: XCTestCase {
         XCTAssertEqual(store.insertCallCount, 1)
     }
     
+    func test_save_requestNewInsertionWithTimestampOnSuccessfulDeletion() {
+        let timestamp = Date()
+        let (sut, store) = makeSUT(currentDate: { timestamp  })
+        let items = [uniqueItem(), uniqueItem()]
+        
+        sut.save(items)
+        store.completeDeletionSuccessfully()
+        
+        XCTAssertEqual(store.insertions.count, 1)
+        XCTAssertEqual(store.insertions.first?.items, items)
+        XCTAssertEqual(store.insertions.first?.timestamp, timestamp)
+    }
+    
     //MARK: Helpers
     
-    private func makeSUT(file: StaticString = #file, line: UInt = #line) -> (sut: LocalFeedLoader, store: FeedStore) {
+    private func makeSUT(currentDate: @escaping () -> Date = Date.init, file: StaticString = #file, line: UInt = #line) -> (sut: LocalFeedLoader, store: FeedStore) {
         let store = FeedStore()
-        let sut = LocalFeedLoader(store: store)
+        let sut = LocalFeedLoader(store: store, currentDate: currentDate)
         trackForMemoryLeaks(instance: store, file: file, line: line)
         trackForMemoryLeaks(instance: sut, file: file, line: line)
         return (sut, store)
