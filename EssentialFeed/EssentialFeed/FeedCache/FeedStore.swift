@@ -16,10 +16,3 @@ public protocol FeedStore {
     
     func deleteCachedFeed(completion: @escaping DeletionCompletion)
 }
-
-public struct LocalFeedItem : Equatable {
-    var id : UUID
-    var description : String?
-    var location : String?
-    var imageUrl : URL
-}
