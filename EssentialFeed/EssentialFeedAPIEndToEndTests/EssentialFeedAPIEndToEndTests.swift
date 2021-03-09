@@ -12,18 +12,18 @@ class EssentialFeedAPIEndToEndTests: XCTestCase {
     
     func test_endToEndServerGetFeedResult_matchesFixedTestAccountData() {
         switch getFeedResult() {
-        case let .success(items)?:
-            XCTAssertEqual(items.count, 8, "Expected 8 items in the test account feed")
-            XCTAssertEqual(items[0], extectedItem(at: 0), "Unexpected item value at index \(0)")
-            XCTAssertEqual(items[1], extectedItem(at: 1), "Unexpected item value at index \(1)")
-            XCTAssertEqual(items[2], extectedItem(at: 2), "Unexpected item value at index \(2)")
-            XCTAssertEqual(items[3], extectedItem(at: 3), "Unexpected item value at index \(3)")
-            XCTAssertEqual(items[4], extectedItem(at: 4), "Unexpected item value at index \(4)")
-            XCTAssertEqual(items[5], extectedItem(at: 5), "Unexpected item value at index \(5)")
-            XCTAssertEqual(items[6], extectedItem(at: 6), "Unexpected item value at index \(6)")
-            XCTAssertEqual(items[7], extectedItem(at: 7), "Unexpected item value at index \(7)")
+        case let .success(imageFeed)?:
+            XCTAssertEqual(imageFeed.count, 8, "Expected 8 items in the test account feed")
+            XCTAssertEqual(imageFeed[0], extectedImage(at: 0), "Unexpected image value at index \(0)")
+            XCTAssertEqual(imageFeed[1], extectedImage(at: 1), "Unexpected image value at index \(1)")
+            XCTAssertEqual(imageFeed[2], extectedImage(at: 2), "Unexpected image value at index \(2)")
+            XCTAssertEqual(imageFeed[3], extectedImage(at: 3), "Unexpected image value at index \(3)")
+            XCTAssertEqual(imageFeed[4], extectedImage(at: 4), "Unexpected image value at index \(4)")
+            XCTAssertEqual(imageFeed[5], extectedImage(at: 5), "Unexpected image value at index \(5)")
+            XCTAssertEqual(imageFeed[6], extectedImage(at: 6), "Unexpected image value at index \(6)")
+            XCTAssertEqual(imageFeed[7], extectedImage(at: 7), "Unexpected image value at index \(7)")
         case let .failure(error):
-            XCTFail("Expected successfull feed result, got \(error) instead.")
+            XCTFail("Expected successfull image result, got \(error) instead.")
         default:
             XCTFail("Expected feed result, got no result instead")
         }
@@ -50,8 +50,8 @@ class EssentialFeedAPIEndToEndTests: XCTestCase {
         return receivedResult
     }
     
-    private func extectedItem(at index : Int) -> FeedItem {
-        return FeedItem(id: uuID(at: index), description: description(at: index), location: location(at: index), imageUrl: imageUrl(at: index))
+    private func extectedImage(at index : Int) -> FeedImage {
+        return FeedImage(id: uuID(at: index), description: description(at: index), location: location(at: index), url: imageUrl(at: index))
     }
     
     private func uuID(at index :Int) -> UUID {

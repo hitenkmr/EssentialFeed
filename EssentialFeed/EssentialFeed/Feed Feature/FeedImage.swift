@@ -7,9 +7,9 @@
 
 import Foundation
 
-public struct FeedItem : Equatable {
+public struct FeedImage : Equatable {
     var id : UUID
     var description : String?
     var location : String?
-    var imageUrl : URL
+    var url : URL
 }

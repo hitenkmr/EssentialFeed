@@ -11,5 +11,5 @@ public struct LocalFeedImage : Equatable {
     var id : UUID
     var description : String?
     var location : String?
-    var imageUrl : URL
+    var url : URL
 }

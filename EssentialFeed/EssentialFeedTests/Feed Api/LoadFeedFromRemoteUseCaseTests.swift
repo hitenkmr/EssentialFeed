@@ -146,9 +146,9 @@ class LoadFeedFromRemoteUseCaseTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
     
-    private func makeFeedItem(id: UUID, description : String? = nil, location : String? = "a location", imageUrl: URL) ->(modal : FeedItem, json : [String : Any]) {
-        let item = FeedItem(id: id, description: description, location: location, imageUrl: imageUrl)
-        let itemJson = ["id" : item.id.uuidString, "description" : item.description, "image" : item.imageUrl.absoluteString, "location" : item.location].reduce(into: [String : Any](), { (acc, e) in
+    private func makeFeedItem(id: UUID, description : String? = nil, location : String? = "a location", imageUrl: URL) ->(modal : FeedImage, json : [String : Any]) {
+        let item = FeedImage(id: id, description: description, location: location, url: imageUrl)
+        let itemJson = ["id" : item.id.uuidString, "description" : item.description, "image" : item.url.absoluteString, "location" : item.location].reduce(into: [String : Any](), { (acc, e) in
             if let value = e.value { acc[e.key] = value }
         })
         return (item, itemJson)
