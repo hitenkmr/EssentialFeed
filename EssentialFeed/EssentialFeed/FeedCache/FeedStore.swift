@@ -12,7 +12,14 @@ public protocol FeedStore {
     typealias DeletionCompletion = (Error?) -> Void
     typealias InsertionCompletion = (Error?) -> Void
     
-    func insert(items: [FeedItem], timestamp: Date, completion: @escaping InsertionCompletion)
+    func insert(items: [LocalFeedItem], timestamp: Date, completion: @escaping InsertionCompletion)
     
     func deleteCachedFeed(completion: @escaping DeletionCompletion)
+}
+
+public struct LocalFeedItem : Equatable {
+    var id : UUID
+    var description : String?
+    var location : String?
+    var imageUrl : URL
 }
