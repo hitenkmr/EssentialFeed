@@ -131,11 +131,7 @@ class URLSessionHTTPClientTests: XCTestCase {
     
     private func anyHTTPUrlResposne() -> HTTPURLResponse{
         return HTTPURLResponse(url: anyUrl(), statusCode: 200, httpVersion: nil, headerFields: nil)!
-    }
-    
-    private func anyNSError() -> NSError {
-        return  NSError(domain: "any error", code: 1)
-    }
+    } 
     
     private func makeSUT(line : UInt = #line, file : StaticString = #file) -> HTTPClient {
         let sut = URLSessionHTTPClient()

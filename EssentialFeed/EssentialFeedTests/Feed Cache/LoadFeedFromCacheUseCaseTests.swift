@@ -39,7 +39,7 @@ class LoadFeedFromCacheUseCaseTests: XCTestCase {
     }
     
     func test_load_deliversCacheImagesOnLessThanSevenDaysOldCache() {
-        let feed = uniquefeed()
+        let feed = uniqueFeedImage()
         let fixedCurrentDate = Date()
         let lessThanSevenDaysOldTimestamp = fixedCurrentDate.adding(days: -7).adding(seconds: 1)
         
@@ -51,7 +51,7 @@ class LoadFeedFromCacheUseCaseTests: XCTestCase {
     }
     
     func test_load_deliversNoImagesOnSevenDaysOldCache() {
-        let feed = uniquefeed()
+        let feed = uniqueFeedImage()
         let fixedCurrentDate = Date()
         let sevenDaysOldTimestamp = fixedCurrentDate.adding(days: -7)
         
@@ -63,7 +63,7 @@ class LoadFeedFromCacheUseCaseTests: XCTestCase {
     }
     
     func test_load_deliversNoImagesMoreThanSevenDaysOldCache() {
-        let feed = uniquefeed()
+        let feed = uniqueFeedImage()
         let fixedCurrentDate = Date()
         let sevenDaysOldTimestamp = fixedCurrentDate.adding(days: -7).adding(seconds: -1)
         
@@ -91,7 +91,7 @@ class LoadFeedFromCacheUseCaseTests: XCTestCase {
     }
     
     func test_load_hasNoSideEffectOnLessThanSevenDaysOldCache() {
-        let feed = uniquefeed()
+        let feed = uniqueFeedImage()
         let fixedCurrentDate = Date()
         let lessThanSevenDaysOldTimestamp = fixedCurrentDate.adding(days: -7).adding(seconds: 1)
         
@@ -103,7 +103,7 @@ class LoadFeedFromCacheUseCaseTests: XCTestCase {
     }
     
     func test_load_deleteCacheOnSevenDaysOldCache() {
-        let feed = uniquefeed()
+        let feed = uniqueFeedImage()
         let fixedCurrentDate = Date()
         let sevenDaysOldTimestamp = fixedCurrentDate.adding(days: -7)
         
@@ -116,7 +116,7 @@ class LoadFeedFromCacheUseCaseTests: XCTestCase {
     }
     
     func test_load_deleteCacheMoreThanSevenDaysOldCache() {
-        let feed = uniquefeed()
+        let feed = uniqueFeedImage()
         let fixedCurrentDate = Date()
         let moreThanSevenDaysOldTimestamp = fixedCurrentDate.adding(days: -7).adding(seconds: -1)
         
@@ -173,35 +173,5 @@ class LoadFeedFromCacheUseCaseTests: XCTestCase {
         
         action()
         wait(for: [exp], timeout: 1.0)
-    }
-    
-    private func anyNSError() -> NSError {
-        return  NSError(domain: "any error", code: 1)
-    }
-    
-    private func uniqueImage() -> FeedImage {
-        FeedImage(id: UUID(), description: "any", location: "any", url: anyURL())
-    }
-    
-    private func uniquefeed() -> (models: [FeedImage], local: [LocalFeedImage]) {
-         let models = [uniqueImage(), uniqueImage()]
-        let local = models.map({ LocalFeedImage(id: $0.id, description: $0.description, location: $0.location, url: $0.url) })
-
-        return (models: models, local: local)
-    }
-    
-    private func anyURL() -> URL {
-        return URL(string: "http://any-url.com")!
-    }
-    
-}
-
-extension Date {
-    func adding(days: Int) -> Date {
-        return Calendar(identifier: .gregorian).date(byAdding: .day, value: days, to: self)!
-    }
-    
-    func adding(seconds: TimeInterval) -> Date {
-        return  self + seconds
     }
 }
