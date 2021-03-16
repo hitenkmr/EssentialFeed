@@ -31,6 +31,7 @@
 		FA97F52325F50D85008BDED6 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA97F50B25F50C8F008BDED6 /* XCTestCase+MemoryLeakTracking.swift */; };
 		FA97F52F25F5C740008BDED6 /* CacheFeedUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA97F52E25F5C740008BDED6 /* CacheFeedUseCaseTests.swift */; };
 		FAE8A7C9260094D300437339 /* Learning Outcomes.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE8A7C8260094D300437339 /* Learning Outcomes.swift */; };
+		FAE8A7D62600D38F00437339 /* FeedCachePolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE8A7D52600D38F00437339 /* FeedCachePolicy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,7 @@
 		FA97F51C25F50D3D008BDED6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA97F52E25F5C740008BDED6 /* CacheFeedUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheFeedUseCaseTests.swift; sourceTree = "<group>"; };
 		FAE8A7C8260094D300437339 /* Learning Outcomes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Learning Outcomes.swift"; sourceTree = "<group>"; };
+		FAE8A7D52600D38F00437339 /* FeedCachePolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCachePolicy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				FA081D8925F6870C0051D1B3 /* LocalFeedLoader.swift */,
 				FA081D9125F688210051D1B3 /* FeedStore.swift */,
 				FA190E5525F7834000C24342 /* LocalFeedImage.swift */,
+				FAE8A7D52600D38F00437339 /* FeedCachePolicy.swift */,
 			);
 			path = FeedCache;
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 				FA081D9225F688210051D1B3 /* FeedStore.swift in Sources */,
 				FA081D8A25F6870C0051D1B3 /* LocalFeedLoader.swift in Sources */,
 				FAE8A7C9260094D300437339 /* Learning Outcomes.swift in Sources */,
+				FAE8A7D62600D38F00437339 /* FeedCachePolicy.swift in Sources */,
 				FA97F50025F50C4A008BDED6 /* URLSessionHTTPClient.swift in Sources */,
 				FA97F50325F50C4A008BDED6 /* RemoteFeedLoader.swift in Sources */,
 				FA97F50125F50C4A008BDED6 /* FeedItemsMapper.swift in Sources */,
