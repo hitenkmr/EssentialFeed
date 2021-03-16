@@ -51,7 +51,7 @@ extension LocalFeedLoader {
     }
 }
 
-extension LocalFeedLoader {
+extension LocalFeedLoader: FeedLoader {
     
     public func load(completion: @escaping (_ result : LoadResult) -> Void) {
         self.store.retrieve { [weak self] cacheResult in
