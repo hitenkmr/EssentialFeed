@@ -7,14 +7,12 @@
 
 import Foundation
 
-public final class LocalFeedLoader {
+private class FeedCachePolicy {
     
-    private let store: FeedStore
     private let currentDate: () -> Date
     private let calendar = Calendar(identifier: .gregorian)
-        
-    public init(store: FeedStore, currentDate: @escaping () -> Date = Date.init, date: Date = Date()) {
-        self.store = store
+    
+    init(currentDate: @escaping () -> Date = Date.init) {
         self.currentDate = currentDate
     }
     
@@ -22,9 +20,22 @@ public final class LocalFeedLoader {
         return 7
     }
     
-    private func validate(_ timestamp: Date) -> Bool {
+    func validate(_ timestamp: Date) -> Bool {
         guard let maxCacheAge = calendar.date(byAdding: .day, value: maxCacheAgeInDays, to: timestamp) else { return false}
         return currentDate() < maxCacheAge
+    }
+}
+
+public final class LocalFeedLoader {
+    
+    private let store: FeedStore
+    private let currentDate: () -> Date
+    private let cachePolicy: FeedCachePolicy
+
+    public init(store: FeedStore, currentDate: @escaping () -> Date = Date.init) {
+        self.store = store
+        self.currentDate = currentDate
+        self.cachePolicy = FeedCachePolicy(currentDate: currentDate)
     }
 }
 
@@ -44,7 +55,7 @@ extension LocalFeedLoader {
     }
     
     private func cache(feed: [FeedImage], with completion: @escaping (_ error: SaveResult) -> Void) {
-        store.insert(feed: feed.toLocal(), timestamp: currentDate()) { [weak self] (error) in
+        store.insert(feed: feed.toLocal(), timestamp: self.currentDate()) { [weak self] (error) in
             guard self != nil else { return }
             completion(error)
         }
@@ -62,7 +73,7 @@ extension LocalFeedLoader: FeedLoader {
             case let.failure(error):
                 completion(.failure(error))
                 
-            case let.found(feed, timestamp) where weak_self.validate(timestamp):
+            case let.found(feed, timestamp) where weak_self.cachePolicy.validate(timestamp):
                 completion(.success(feed.toModels()))
                 
             case .found, .empty:
@@ -81,7 +92,7 @@ extension LocalFeedLoader {
             case .failure:
                 weak_self.store.deleteCachedFeed(completion: { _ in })
                 
-            case let.found(feed: _, timestamp) where !weak_self.validate(timestamp):
+            case let.found(feed: _, timestamp) where !weak_self.cachePolicy.validate(timestamp):
                 weak_self.store.deleteCachedFeed(completion: { _ in })
                 
             case .empty, .found: break
