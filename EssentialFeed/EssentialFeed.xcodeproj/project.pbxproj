@@ -32,6 +32,7 @@
 		FA97F52F25F5C740008BDED6 /* CacheFeedUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA97F52E25F5C740008BDED6 /* CacheFeedUseCaseTests.swift */; };
 		FAE8A7C9260094D300437339 /* Learning Outcomes.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE8A7C8260094D300437339 /* Learning Outcomes.swift */; };
 		FAE8A7D62600D38F00437339 /* FeedCachePolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE8A7D52600D38F00437339 /* FeedCachePolicy.swift */; };
+		FAE8A8AB260234ED00437339 /* CodableFeedStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE8A8AA260234ED00437339 /* CodableFeedStoreTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,7 @@
 		FA97F52E25F5C740008BDED6 /* CacheFeedUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheFeedUseCaseTests.swift; sourceTree = "<group>"; };
 		FAE8A7C8260094D300437339 /* Learning Outcomes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Learning Outcomes.swift"; sourceTree = "<group>"; };
 		FAE8A7D52600D38F00437339 /* FeedCachePolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCachePolicy.swift; sourceTree = "<group>"; };
+		FAE8A8AA260234ED00437339 /* CodableFeedStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableFeedStoreTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,6 +223,7 @@
 				FA97F52E25F5C740008BDED6 /* CacheFeedUseCaseTests.swift */,
 				FA30100525F9F9A800F70A42 /* LoadFeedFromCacheUseCaseTests.swift */,
 				FA2495EE25FE84DD00CA1B93 /* ValidateFeedCacheUseCaseTests.swift */,
+				FAE8A8AA260234ED00437339 /* CodableFeedStoreTests.swift */,
 			);
 			path = "Feed Cache";
 			sourceTree = "<group>";
@@ -380,6 +383,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAE8A8AB260234ED00437339 /* CodableFeedStoreTests.swift in Sources */,
 				FA2495F425FE978600CA1B93 /* FeedCacheTestHelpers.swift in Sources */,
 				FA2495EF25FE84DD00CA1B93 /* ValidateFeedCacheUseCaseTests.swift in Sources */,
 				FA97F50D25F50C8F008BDED6 /* LoadFeedFromRemoteUseCaseTests.swift in Sources */,
