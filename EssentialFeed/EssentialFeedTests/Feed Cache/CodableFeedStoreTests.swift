@@ -46,7 +46,7 @@ class CodableFeedStore {
         let cache = try! encoder.decode(Cache.self, from: data)
         completion(.found(feed: cache.feed.map({ $0.local }), timestamp: cache.timestamp))
     }
- 
+    
     private let storeURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!.appendingPathComponent("image-feed.store")
     
     func insert(feed: [LocalFeedImage] , timestamp: Date, completion: @escaping FeedStore.InsertionCompletion) {
@@ -76,7 +76,7 @@ class CodableFeedStoreTests: XCTestCase {
     }
     
     func test_retrieve_deliversEmptyOnEmptyCache() {
-        let sut = CodableFeedStore()
+        let sut = makeSUT()
         
         let exp = expectation(description: "wait for completion")
         sut.retrieve { (result) in
@@ -92,7 +92,7 @@ class CodableFeedStoreTests: XCTestCase {
     }
     
     func test_retrieve_hasNoSideEffectOnEmptyCache() {
-        let sut = CodableFeedStore()
+        let sut = makeSUT()
         
         let exp = expectation(description: "wait for completion")
         sut.retrieve { (firstResult) in
@@ -110,7 +110,7 @@ class CodableFeedStoreTests: XCTestCase {
     }
     
     func test_retrieve_afterInsertingToEmptyCache_deliversInsertedValues() {
-        let sut = CodableFeedStore()
+        let sut = makeSUT()
         let timestamp = Date()
         let exp = expectation(description: "wait for completion")
         
@@ -135,16 +135,10 @@ class CodableFeedStoreTests: XCTestCase {
         
         wait(for: [exp], timeout: 1.0)
     }
-}
-
-//private extension Array where Element == CodableFeedStore.CodableFeedImage {
-//    func toLocalFeedImage() -> [LocalFeedImage] {
-//        return map({ LocalFeedImage(id: $0.id, description: $0.description, location: $0.location, url: $0.url)})
-//    }
-//}
-//
-//private extension Array where Element == LocalFeedImage {
-//    func toCodableFeedImage() -> [CodableFeedStore.CodableFeedImage] {
-//        return map({ CodableFeedStore.CodableFeedImage(id: $0.id, description: $0.description, location: $0.location, url: $0.url)})
-//    }
-//}
+    
+    //MARK: Helpers
+    
+    private func makeSUT() -> CodableFeedStore {
+        return CodableFeedStore()
+    }
+} 
