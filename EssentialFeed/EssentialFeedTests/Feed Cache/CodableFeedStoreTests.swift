@@ -69,14 +69,14 @@ class CodableFeedStoreTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-
-        try? FileManager.default.removeItem(at: self.testSpecificStoreURL())
+        
+        setupEmptyStoreState()
     }
     
     override func tearDown() {
         super.tearDown()
-
-        try? FileManager.default.removeItem(at: self.testSpecificStoreURL())
+        
+        undoSideEffects()
     }
     
     func test_retrieve_deliversEmptyOnEmptyCache() {
@@ -116,13 +116,13 @@ class CodableFeedStoreTests: XCTestCase {
     func test_retrieve_afterInsertingToEmptyCache_deliversInsertedValues() {
         let sut = makeSUT()
         let timestamp = Date()
-        let exp = expectation(description: "wait for completion")
+        let exp = expectation(description: "wait for cache retrieval")
         
         let insertedFeed = uniqueFeedImage().local
         
         sut.insert(feed: insertedFeed, timestamp: timestamp, completion: { insertionError in
             
-            XCTAssertNil(insertionError)
+            XCTAssertNil(insertionError, "Expected feed to be inserted successfully")
             
             sut.retrieve { (retrieveResult) in
                 switch retrieveResult {
@@ -148,7 +148,21 @@ class CodableFeedStoreTests: XCTestCase {
         return sut
     }
     
+    private func setupEmptyStoreState() {
+        deleteStoreArtifacts()
+     }
+    
+    private func undoSideEffects() {
+        deleteStoreArtifacts()
+    }
+    
+    private func deleteStoreArtifacts() {
+        try? FileManager.default.removeItem(at: self.testSpecificStoreURL())
+    }
+    
     private func testSpecificStoreURL() -> URL {
         return FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!.appendingPathComponent("\(type(of: self)).store")
     }
+    
+    
 } 
