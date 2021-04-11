@@ -208,7 +208,7 @@ class CodableFeedStoreTests: XCTestCase {
     
     //MARK: Helpers
     
-    private func makeSUT(storeURL: URL? = nil, file: StaticString = #filePath, line: UInt = #line) -> CodableFeedStore {
+    private func makeSUT(storeURL: URL? = nil, file: StaticString = #filePath, line: UInt = #line) -> FeedStore {
         let sut = CodableFeedStore(storeURL: storeURL ?? testSpecificStoreURL())
         trackForMemoryLeaks(instance: sut, file: file, line: line)
         return sut
@@ -234,13 +234,13 @@ class CodableFeedStoreTests: XCTestCase {
         return FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
     }
     
-    private func expectRetrieveTwice(sut: CodableFeedStore, toRetrieve expectedResult: RetrieveCacheFeedResult, file: StaticString = #filePath, line: UInt = #line) {
+    private func expectRetrieveTwice(sut: FeedStore, toRetrieve expectedResult: RetrieveCacheFeedResult, file: StaticString = #filePath, line: UInt = #line) {
         expect(sut: sut, toRetrieve: expectedResult)
         expect(sut: sut, toRetrieve: expectedResult)
     }
         
    @discardableResult
-    private func insert(_ sut: CodableFeedStore, _ insertedFeed: [LocalFeedImage], _ timestamp: Date) -> Error? {
+    private func insert(_ sut: FeedStore, _ insertedFeed: [LocalFeedImage], _ timestamp: Date) -> Error? {
         let exp = expectation(description: "wait for cache retrieval")
         var insertionError: Error?
         
@@ -252,7 +252,7 @@ class CodableFeedStoreTests: XCTestCase {
         return insertionError
     }
     
-    private func expect(sut: CodableFeedStore, toRetrieve expectedResult: RetrieveCacheFeedResult, file: StaticString = #filePath, line: UInt = #line) {
+    private func expect(sut: FeedStore, toRetrieve expectedResult: RetrieveCacheFeedResult, file: StaticString = #filePath, line: UInt = #line) {
         let exp = expectation(description: "wait for cache retrieval")
         
         sut.retrieve { (retrievedResult) in
@@ -271,7 +271,7 @@ class CodableFeedStoreTests: XCTestCase {
         wait(for: [exp], timeout: 1.0)
     }
     
-    private func deleteCache(from sut: CodableFeedStore) -> Error? {
+    private func deleteCache(from sut: FeedStore) -> Error? {
         let exp = expectation(description: "Wait for cache deletion")
         var deletionError: Error?
         sut.deleteCachedFeed { receivedDeletionError in
