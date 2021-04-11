@@ -42,8 +42,8 @@ class CodableFeedStore {
             return completion(.empty)
         }
         
-        let encoder = JSONDecoder()
-        let cache = try! encoder.decode(Cache.self, from: data)
+        let decoder = JSONDecoder()
+        let cache = try! decoder.decode(Cache.self, from: data)
         completion(.found(feed: cache.feed.map({ $0.local }), timestamp: cache.timestamp))
     }
     
