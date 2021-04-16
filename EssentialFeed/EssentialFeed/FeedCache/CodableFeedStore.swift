@@ -43,7 +43,7 @@ public class CodableFeedStore: FeedStore {
     }
     
     //shared serial background queue to run all tasks serially means order is restored(if attributed: .concurrent is used then operations will be executed concurrently)
-    let queue = DispatchQueue(label: "\(CodableFeedStore.self)Queue", qos: .userInitiated)
+    private let queue = DispatchQueue(label: "\(CodableFeedStore.self)Queue", qos: .userInitiated)
     
     public func retrieve(completion: @escaping RetrievalCompletion) {
         let storeURL = self.storeURL
