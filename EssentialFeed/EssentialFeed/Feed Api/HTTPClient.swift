@@ -14,6 +14,9 @@ import Foundation
  */
 
 public protocol HTTPClient {
+    
+    ///The completion handler can be invoked in any thread(main thread if to update the UI OR background thread if some non-UI work needs to be done).
+    ///Clients are responsible to dispatch to appropriate threah, if needed.
     func get(from url : URL, completion : @escaping (HTTPClientResult) -> Void)
 }
 

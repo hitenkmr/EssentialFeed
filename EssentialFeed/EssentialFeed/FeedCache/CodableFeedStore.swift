@@ -42,13 +42,14 @@ public class CodableFeedStore: FeedStore {
         self.storeURL = storeURL
     }
     
-    //make queue to run task concurrently but allow some tasks to run in serial order by using .barrier flag
+    ///make queue to run task concurrently(.concurrent attribute) but allow some tasks to run in serial order by using .barrier flag
     private let queue = DispatchQueue(label: "\(CodableFeedStore.self)Queue", qos: .userInitiated, attributes: .concurrent)
     
-    //retrieve has no seide effects(we proved in test cases) so it should run concurrently and (insert & delete serially)
+    ///retrieve has no seide effects(it does not change any state) so it should run concurrently and (insert & delete serially)
     public func retrieve(completion: @escaping RetrievalCompletion) {
         let storeURL = self.storeURL
-        //async - without blocking the thread
+        
+        ///async - without blocking the thread
         queue.async {
             guard let data = try? Data(contentsOf: storeURL) else {
                 return completion(.empty)
@@ -67,9 +68,9 @@ public class CodableFeedStore: FeedStore {
     
     public func deleteCachedFeed(completion: @escaping DeletionCompletion) {
         let storeURL = self.storeURL
-        //async - without blocking the thread
         
-        //'barrier' flag will keep the queue on hold untill(deleteCachedFeed: :) method is done executing - deleteCachedFeed method has side effects so we allow this to be run serially by using .barrier flag on concurrent queue
+        ///async - without blocking the thread
+        ///'barrier' flag will keep the queue on hold untill(deleteCachedFeed: :) method is done executing - deleteCachedFeed method has side effects so we allow this to be run serially by using .barrier flag on concurrent queue
         queue.async(flags: .barrier) {
             guard FileManager.default.fileExists(atPath: storeURL.path) else {
                 return completion(nil)
@@ -86,9 +87,9 @@ public class CodableFeedStore: FeedStore {
     
     public func insert(feed: [LocalFeedImage] , timestamp: Date, completion: @escaping InsertionCompletion) {
         let storeURL = self.storeURL
-        //async - without blocking the thread
         
-        //'barrier' flag will keep the queue on hold untill(insert(: :) method) is done executing - insert method has side effects so we allow this to be run serially by using .barrier flag on concurrent queue
+        ///async - without blocking the thread
+        ///'barrier' flag will keep the queue on hold untill(insert(: :) method) is done executing - insert method has side effects so we allow this to be run serially by using .barrier flag on concurrent queue
         queue.async(flags: .barrier) {
             do {
                 let encoder = JSONEncoder()
