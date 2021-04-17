@@ -11,7 +11,7 @@ protocol FeedStoreSpecs {
     
     func test_retrieve_deliversEmptyOnEmptyCache()
     func test_retrieve_hasNoSideEffectOnEmptyCache()
-    func test_retrieve_deliversFoundValuesOnEmptyCache()
+    func test_retrieve_deliversFoundValuesOnNonEmptyCache()
     func test_retrieve_hasNoSideEffectOnNonEmptyCache()
   
     func test_insert_deliversNoErrorOnEmptyCache()
