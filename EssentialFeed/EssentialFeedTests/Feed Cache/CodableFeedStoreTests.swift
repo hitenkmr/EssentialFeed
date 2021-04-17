@@ -8,7 +8,7 @@
 import XCTest
 @testable import EssentialFeed
 
-class CodableFeedStoreTests: XCTestCase {
+class CodableFeedStoreTests: XCTestCase, FailableFeedStoreSpecs {
     
     override func setUp() {
         super.setUp()
@@ -30,8 +30,7 @@ class CodableFeedStoreTests: XCTestCase {
     
     func test_retrieve_hasNoSideEffectOnEmptyCache() {
         let sut = makeSUT()
-        
-        expectRetrieveTwice(sut: sut, toRetrieve: .empty)
+        expect(sut, toRetrieveTwice: .empty)
     }
     
     func test_retrieve_deliversFoundValuesOnEmptyCache() {
@@ -70,7 +69,7 @@ class CodableFeedStoreTests: XCTestCase {
         
         try! "invalid data".write(to: testSpecificStoreURL(), atomically: false, encoding: .utf8)
         
-        expectRetrieveTwice(sut: sut, toRetrieve: .failure(anyNSError()))
+        expect(sut, toRetrieveTwice: .failure(anyNSError()))
     }
     
     func test_insert_deliversNoErrorOnEmptyCache() {
@@ -234,54 +233,5 @@ class CodableFeedStoreTests: XCTestCase {
     
     private func cachesDirectory() -> URL {
         return FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
-    }
-    
-    private func expectRetrieveTwice(sut: FeedStore, toRetrieve expectedResult: RetrieveCacheFeedResult, file: StaticString = #filePath, line: UInt = #line) {
-        expect(sut: sut, toRetrieve: expectedResult)
-        expect(sut: sut, toRetrieve: expectedResult)
-    }
-        
-   @discardableResult
-    private func insert(_ sut: FeedStore, _ insertedFeed: [LocalFeedImage], _ timestamp: Date) -> Error? {
-        let exp = expectation(description: "wait for cache retrieval")
-        var insertionError: Error?
-        
-        sut.insert(feed: insertedFeed, timestamp: timestamp, completion: { onInsertionError in
-            insertionError = onInsertionError
-            exp.fulfill()
-        })
-        wait(for: [exp], timeout: 1.0)
-        return insertionError
-    }
-    
-    private func expect(sut: FeedStore, toRetrieve expectedResult: RetrieveCacheFeedResult, file: StaticString = #filePath, line: UInt = #line) {
-        let exp = expectation(description: "wait for cache retrieval")
-        
-        sut.retrieve { (retrievedResult) in
-            switch (expectedResult, retrievedResult) {
-            case (.empty, .empty), (.failure, .failure):
-                break
-            case let (.found(expected, expectedTimestamp), .found(retrieved, retrievedTimestamp)):
-                XCTAssertEqual(expected, retrieved)
-                XCTAssertEqual(expectedTimestamp, retrievedTimestamp)
-                break
-            default:
-                XCTFail("Extected retrievinng \(expectedResult), got \(retrievedResult) instead", file: file, line: line)
-            }
-            exp.fulfill()
-        }
-        wait(for: [exp], timeout: 1.0)
-    }
-    
-    @discardableResult
-    private func deleteCache(from sut: FeedStore) -> Error? {
-        let exp = expectation(description: "Wait for cache deletion")
-        var deletionError: Error?
-        sut.deleteCachedFeed { receivedDeletionError in
-            deletionError = receivedDeletionError
-            exp.fulfill()
-        }
-        wait(for: [exp], timeout: 1.0)
-        return deletionError
     }
 }
