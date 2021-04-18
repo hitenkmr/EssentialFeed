@@ -126,6 +126,9 @@ class CodableFeedStoreTests: XCTestCase, FailableFeedStoreSpecs {
         let sut = makeSUT()
         assertThatSideEffectsRunSerially(on: sut)
     }
+}
+
+extension CodableFeedStoreTests {
     
     //MARK: Helpers
     
