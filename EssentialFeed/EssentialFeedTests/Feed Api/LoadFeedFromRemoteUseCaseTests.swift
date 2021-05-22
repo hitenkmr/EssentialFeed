@@ -76,7 +76,7 @@ class LoadFeedFromRemoteUseCaseTests: XCTestCase {
     func test_load_deliversInvalidDataOnNon200HTTPResponse() {
         let (sut, client) = makeSUT()
         expect(sut, toCompleteWith: failure(.invalidData)) {
-            let invalidData : Data = "".data(using: .utf8)!
+            let invalidData = Data("".utf8)
             client.complete(withStatusCode: 200, data: invalidData, at: 0)
             
         }
@@ -85,7 +85,7 @@ class LoadFeedFromRemoteUseCaseTests: XCTestCase {
     func test_load_deliversNoItemsOn200ResponseCodeWithEmptyListJSON() {
         let (sut, client) = makeSUT()
         expect(sut, toCompleteWith: .success([])) {
-            let emptyJson = "{\"items\":[]}".data(using: .utf8)!
+            let emptyJson = Data("{\"items\":[]}".utf8)
             client.complete(withStatusCode: 200, data: emptyJson, at: 0)
         }
     }
