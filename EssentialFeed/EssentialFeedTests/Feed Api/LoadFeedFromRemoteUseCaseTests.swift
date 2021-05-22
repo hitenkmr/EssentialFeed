@@ -148,9 +148,7 @@ class LoadFeedFromRemoteUseCaseTests: XCTestCase {
     
     private func makeFeedItem(id: UUID, description : String? = nil, location : String? = "a location", imageUrl: URL) ->(modal : FeedImage, json : [String : Any]) {
         let item = FeedImage(id: id, description: description, location: location, url: imageUrl)
-        let itemJson = ["id" : item.id.uuidString, "description" : item.description, "image" : item.url.absoluteString, "location" : item.location].reduce(into: [String : Any](), { (acc, e) in
-            if let value = e.value { acc[e.key] = value }
-        })
+        let itemJson = ["id" : item.id.uuidString, "description" : item.description, "image" : item.url.absoluteString, "location" : item.location].compactMapValues({ $0 })
         return (item, itemJson)
     }
     
