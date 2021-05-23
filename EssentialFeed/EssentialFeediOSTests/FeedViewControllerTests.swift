@@ -31,6 +31,20 @@ private extension FeedViewController {
         let index = IndexPath(row: row, section: feedImagesSection)
         delegate?.tableView?(tableView, didEndDisplaying: view!, forRowAt: index)
     }
+        
+    func numberOfRenderedFeedImageViews() -> Int {
+        return tableView.numberOfRows(inSection: feedImagesSection)
+    }
+    
+    func feedImageView(at row: Int) -> UITableViewCell? {
+        let ds = tableView.dataSource
+        let index = IndexPath(row: row, section: feedImagesSection)
+        return ds?.tableView(tableView, cellForRowAt: index)
+    }
+    
+    private var feedImagesSection: Int {
+        return 0
+    }
 }
 
 class FeedViewControllerTests: XCTestCase {
