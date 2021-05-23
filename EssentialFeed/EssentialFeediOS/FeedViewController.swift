@@ -10,6 +10,7 @@ import EssentialFeed
 
 public protocol FeedImageDataLoader {
     func loadImageData(from url: URL)
+    func cancelImageDataLoad(from url: URL)
 }
 
 final public class FeedViewController: UITableViewController {
@@ -36,7 +37,7 @@ final public class FeedViewController: UITableViewController {
         feedLoader?.load(completion: { [weak self] result in
             if let feed = try? result.get() {
                 self?.tableModel = feed
-                self?.tableView.reloadData() 
+                self?.tableView.reloadData()
             }
             self?.refreshControl?.endRefreshing()
         })
@@ -56,7 +57,7 @@ final public class FeedViewController: UITableViewController {
         return ds?.tableView(tableView, cellForRowAt: index)
     }
     
-    private var feedImagesSection: Int {
+    public var feedImagesSection: Int {
         return 0
     }
 
@@ -68,5 +69,10 @@ final public class FeedViewController: UITableViewController {
         cell.descriptionLabel.text = cellModel.description
         imageLoader?.loadImageData(from: cellModel.url)
         return cell
+    }
+    
+    public override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let cellModel = tableModel[indexPath.row]
+        imageLoader?.cancelImageDataLoad(from: cellModel.url)
     }
 }
