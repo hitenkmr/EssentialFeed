@@ -61,6 +61,7 @@
 		FAFAAFAA265BFF0E001C19DA /* UIButton+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFAAFA9265BFF0E001C19DA /* UIButton+TestHelpers.swift */; };
 		FAFAAFB1265BFF79001C19DA /* UIControl+TestHelpers.swift .swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFAAFB0265BFF79001C19DA /* UIControl+TestHelpers.swift .swift */; };
 		FAFAAFB8265BFFB0001C19DA /* UIRefreshControl+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFAAFB7265BFFB0001C19DA /* UIRefreshControl+TestHelpers.swift */; };
+		FAFAAFCB265C019B001C19DA /* FeedViewController+TestHelpers.swift .swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFAAFCA265C019B001C19DA /* FeedViewController+TestHelpers.swift .swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -166,6 +167,7 @@
 		FAFAAFA9265BFF0E001C19DA /* UIButton+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+TestHelpers.swift"; sourceTree = "<group>"; };
 		FAFAAFB0265BFF79001C19DA /* UIControl+TestHelpers.swift .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+TestHelpers.swift .swift"; sourceTree = "<group>"; };
 		FAFAAFB7265BFFB0001C19DA /* UIRefreshControl+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRefreshControl+TestHelpers.swift"; sourceTree = "<group>"; };
+		FAFAAFCA265C019B001C19DA /* FeedViewController+TestHelpers.swift .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedViewController+TestHelpers.swift .swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -468,9 +470,18 @@
 		FAFAAFC3265C005B001C19DA /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				FAFAAFC9265C017E001C19DA /* Helpers */,
 				FA6E1968265A305400599596 /* FeedViewControllerTests.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		FAFAAFC9265C017E001C19DA /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				FAFAAFCA265C019B001C19DA /* FeedViewController+TestHelpers.swift .swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -724,6 +735,7 @@
 				FA6E197B265A385F00599596 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				FA6E1999265B547B00599596 /* UIImage+TestHelpers.swift in Sources */,
 				FAFAAFB1265BFF79001C19DA /* UIControl+TestHelpers.swift .swift in Sources */,
+				FAFAAFCB265C019B001C19DA /* FeedViewController+TestHelpers.swift .swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
