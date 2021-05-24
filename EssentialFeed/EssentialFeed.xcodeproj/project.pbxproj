@@ -63,6 +63,7 @@
 		FAFAAFB8265BFFB0001C19DA /* UIRefreshControl+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFAAFB7265BFFB0001C19DA /* UIRefreshControl+TestHelpers.swift */; };
 		FAFAAFCB265C019B001C19DA /* FeedViewController+TestHelpers.swift .swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFAAFCA265C019B001C19DA /* FeedViewController+TestHelpers.swift .swift */; };
 		FAFAAFD7265C0220001C19DA /* FeedImageCell+TestHelpers.swift .swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFAAFD6265C0220001C19DA /* FeedImageCell+TestHelpers.swift .swift */; };
+		FAFAAFDE265C027D001C19DA /* FeedViewControllerTests+LoaderSpy.swift .swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFAAFDD265C027D001C19DA /* FeedViewControllerTests+LoaderSpy.swift .swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -170,6 +171,7 @@
 		FAFAAFB7265BFFB0001C19DA /* UIRefreshControl+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRefreshControl+TestHelpers.swift"; sourceTree = "<group>"; };
 		FAFAAFCA265C019B001C19DA /* FeedViewController+TestHelpers.swift .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedViewController+TestHelpers.swift .swift"; sourceTree = "<group>"; };
 		FAFAAFD6265C0220001C19DA /* FeedImageCell+TestHelpers.swift .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedImageCell+TestHelpers.swift .swift"; sourceTree = "<group>"; };
+		FAFAAFDD265C027D001C19DA /* FeedViewControllerTests+LoaderSpy.swift .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedViewControllerTests+LoaderSpy.swift .swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -483,6 +485,7 @@
 			children = (
 				FAFAAFCA265C019B001C19DA /* FeedViewController+TestHelpers.swift .swift */,
 				FAFAAFD6265C0220001C19DA /* FeedImageCell+TestHelpers.swift .swift */,
+				FAFAAFDD265C027D001C19DA /* FeedViewControllerTests+LoaderSpy.swift .swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -738,6 +741,7 @@
 				FAFAAFAA265BFF0E001C19DA /* UIButton+TestHelpers.swift in Sources */,
 				FA6E197B265A385F00599596 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				FA6E1999265B547B00599596 /* UIImage+TestHelpers.swift in Sources */,
+				FAFAAFDE265C027D001C19DA /* FeedViewControllerTests+LoaderSpy.swift .swift in Sources */,
 				FAFAAFB1265BFF79001C19DA /* UIControl+TestHelpers.swift .swift in Sources */,
 				FAFAAFCB265C019B001C19DA /* FeedViewController+TestHelpers.swift .swift in Sources */,
 			);
