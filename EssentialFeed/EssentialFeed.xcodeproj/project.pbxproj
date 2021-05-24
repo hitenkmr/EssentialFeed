@@ -273,7 +273,7 @@
 			isa = PBXGroup;
 			children = (
 				FA6E1997265B546900599596 /* Helpers */,
-				FAFAAFC3265C005B001C19DA /* Controller */,
+				FAFAAFEB265C0410001C19DA /* Feed UI */,
 				FA6E19172659EA3900599596 /* Info.plist */,
 				FA6E1967265A305300599596 /* EssentialFeediOSTests-Bridging-Header.h */,
 			);
@@ -473,13 +473,13 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		FAFAAFC3265C005B001C19DA /* Controller */ = {
+		FAFAAFC3265C005B001C19DA /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				FAFAAFC9265C017E001C19DA /* Helpers */,
 				FA6E1968265A305400599596 /* FeedViewControllerTests.swift */,
 			);
-			path = Controller;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		FAFAAFC9265C017E001C19DA /* Helpers */ = {
@@ -491,6 +491,14 @@
 				FAFAAFE4265C02D4001C19DA /* FeedViewControllerTests+Assertions.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		FAFAAFEB265C0410001C19DA /* Feed UI */ = {
+			isa = PBXGroup;
+			children = (
+				FAFAAFC3265C005B001C19DA /* Controllers */,
+			);
+			path = "Feed UI";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
