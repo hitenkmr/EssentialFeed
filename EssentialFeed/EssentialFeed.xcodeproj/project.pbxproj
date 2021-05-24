@@ -265,8 +265,8 @@
 			isa = PBXGroup;
 			children = (
 				FA6E1997265B546900599596 /* Helpers */,
+				FAFAAFC3265C005B001C19DA /* Controller */,
 				FA6E19172659EA3900599596 /* Info.plist */,
-				FA6E1968265A305400599596 /* FeedViewControllerTests.swift */,
 				FA6E1967265A305300599596 /* EssentialFeediOSTests-Bridging-Header.h */,
 			);
 			path = EssentialFeediOSTests;
@@ -463,6 +463,14 @@
 				FA6E198F265A8F2300599596 /* UIView+Shimmering.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		FAFAAFC3265C005B001C19DA /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FA6E1968265A305400599596 /* FeedViewControllerTests.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
