@@ -383,18 +383,7 @@ class FeedViewControllerTests: XCTestCase {
             imageRequests[index].completion(.failure(error))
         }
     }
-}
-
-private extension UIRefreshControl {
-    
-    func simulatePullToRefresh() {
-        self.allTargets.forEach { target in
-            self.actions(forTarget: target, forControlEvent: .valueChanged)?.forEach {
-                (target as NSObject).perform(Selector($0))
-            }
-        }
-    }
-}
+} 
 
 private extension FeedImageCell {
     var isShowingLocation: Bool {
