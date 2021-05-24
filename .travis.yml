@@ -1,3 +1,4 @@
+if: branch = master
 os: osx
 osx_image: xcode10.2
 language: swift
