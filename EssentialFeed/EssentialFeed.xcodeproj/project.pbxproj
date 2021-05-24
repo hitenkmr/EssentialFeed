@@ -65,6 +65,7 @@
 		FAFAAFD7265C0220001C19DA /* FeedImageCell+TestHelpers.swift .swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFAAFD6265C0220001C19DA /* FeedImageCell+TestHelpers.swift .swift */; };
 		FAFAAFDE265C027D001C19DA /* FeedViewControllerTests+LoaderSpy.swift .swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFAAFDD265C027D001C19DA /* FeedViewControllerTests+LoaderSpy.swift .swift */; };
 		FAFAAFE5265C02D4001C19DA /* FeedViewControllerTests+Assertions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFAAFE4265C02D4001C19DA /* FeedViewControllerTests+Assertions.swift */; };
+		FAFAAFF2265C04DC001C19DA /* FeedRefreshViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFAAFF1265C04DC001C19DA /* FeedRefreshViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -174,6 +175,7 @@
 		FAFAAFD6265C0220001C19DA /* FeedImageCell+TestHelpers.swift .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedImageCell+TestHelpers.swift .swift"; sourceTree = "<group>"; };
 		FAFAAFDD265C027D001C19DA /* FeedViewControllerTests+LoaderSpy.swift .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedViewControllerTests+LoaderSpy.swift .swift"; sourceTree = "<group>"; };
 		FAFAAFE4265C02D4001C19DA /* FeedViewControllerTests+Assertions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedViewControllerTests+Assertions.swift"; sourceTree = "<group>"; };
+		FAFAAFF1265C04DC001C19DA /* FeedRefreshViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedRefreshViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -459,6 +461,7 @@
 		FAFAAF81265BF9BC001C19DA /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FAFAAFF1265C04DC001C19DA /* FeedRefreshViewController.swift */,
 				FA6E1981265A522400599596 /* FeedViewController.swift */,
 			);
 			path = Controllers;
@@ -736,6 +739,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FAFAAF75265BF98F001C19DA /* FeedImageDataLoader.swift in Sources */,
+				FAFAAFF2265C04DC001C19DA /* FeedRefreshViewController.swift in Sources */,
 				FA6E1990265A8F2300599596 /* UIView+Shimmering.swift in Sources */,
 				FA6E1982265A522400599596 /* FeedViewController.swift in Sources */,
 				FA6E1989265A583C00599596 /* FeedImageCell.swift in Sources */,
