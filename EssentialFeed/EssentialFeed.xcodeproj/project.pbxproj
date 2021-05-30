@@ -69,7 +69,6 @@
 		FAFAAFF2265C04DC001C19DA /* FeedRefreshViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFAAFF1265C04DC001C19DA /* FeedRefreshViewController.swift */; };
 		FAFAAFFE265C073B001C19DA /* FeedImageCellController.swift .swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFAAFFD265C073B001C19DA /* FeedImageCellController.swift .swift */; };
 		FAFAB006265C9CFB001C19DA /* FeedUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFAB005265C9CFB001C19DA /* FeedUIComposer.swift */; };
-		FAFAB02F265CCBDA001C19DA /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFAB02E265CCBDA001C19DA /* FeedViewModel.swift */; };
 		FAFAB03B265CD24F001C19DA /* FeedImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFAB03A265CD24F001C19DA /* FeedImageViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -184,7 +183,6 @@
 		FAFAAFF1265C04DC001C19DA /* FeedRefreshViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedRefreshViewController.swift; sourceTree = "<group>"; };
 		FAFAAFFD265C073B001C19DA /* FeedImageCellController.swift .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedImageCellController.swift .swift"; sourceTree = "<group>"; };
 		FAFAB005265C9CFB001C19DA /* FeedUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedUIComposer.swift; sourceTree = "<group>"; };
-		FAFAB02E265CCBDA001C19DA /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
 		FAFAB03A265CD24F001C19DA /* FeedImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -528,7 +526,6 @@
 		FAFAB02D265CCBCC001C19DA /* Feed Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				FAFAB02E265CCBDA001C19DA /* FeedViewModel.swift */,
 				FAFAB03A265CD24F001C19DA /* FeedImageViewModel.swift */,
 				FAF1FB702663574F002F1543 /* FeedPresenter.swift */,
 			);
@@ -777,7 +774,6 @@
 				FA6E1989265A583C00599596 /* FeedImageCell.swift in Sources */,
 				FAFAB03B265CD24F001C19DA /* FeedImageViewModel.swift in Sources */,
 				FAFAAFFE265C073B001C19DA /* FeedImageCellController.swift .swift in Sources */,
-				FAFAB02F265CCBDA001C19DA /* FeedViewModel.swift in Sources */,
 				FAFAB006265C9CFB001C19DA /* FeedUIComposer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
