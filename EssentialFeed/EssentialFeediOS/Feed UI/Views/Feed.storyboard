@@ -77,6 +77,9 @@ Location</string>
                                                             <state key="normal" title="⟳">
                                                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             </state>
+                                                            <connections>
+                                                                <action selector="retryButtonTapped" destination="K9b-au-pe9" eventType="touchUpInside" id="Xue-4E-B9h"/>
+                                                            </connections>
                                                         </button>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.89019607840000003" green="0.89019607840000003" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -118,6 +121,14 @@ Location</string>
                                         <constraint firstAttribute="bottomMargin" secondItem="cNr-gx-TDO" secondAttribute="bottom" priority="999" constant="6" id="VrF-fM-GBJ"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="descriptionLabel" destination="eCl-qQ-t8b" id="Br7-sJ-p4I"/>
+                                    <outlet property="feedImageContainer" destination="FSp-GH-xB5" id="MTZ-ht-lZj"/>
+                                    <outlet property="feedImageRetryBtn" destination="Vt0-uP-HUF" id="tKA-sY-RbB"/>
+                                    <outlet property="feedImageView" destination="lfU-Lz-3Aj" id="h2f-wt-8ZZ"/>
+                                    <outlet property="locationContainer" destination="FAC-NH-aBT" id="CFg-6N-O6y"/>
+                                    <outlet property="locationLabel" destination="q28-22-xjN" id="Ulp-1i-bFe"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
