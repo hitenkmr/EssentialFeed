@@ -25,7 +25,7 @@ public final class FeedUIComposer {
         presentationAdapter.presenter = presenter
         return feedController
     }
-} 
+}
 
 private extension FeedViewController {
     static func makeWith(delegate: FeedViewControllerDelegate, title: String) -> FeedViewController {
@@ -35,26 +35,6 @@ private extension FeedViewController {
         feedController.delegate = delegate
         feedController.title = title
         return feedController
-    }
-}
-
-final class WeakRefVirtualProxy<T: AnyObject> {
-    private weak var object: T?
-    
-    init(object: T) {
-        self.object = object
-    }
-}
-
-extension WeakRefVirtualProxy: FeedLoadingView where T: FeedLoadingView {
-    func display(viewModel: FeedLoadingViewModel) {
-        object?.display(viewModel: viewModel)
-    }
-}
-
-extension WeakRefVirtualProxy: FeedImageView where T: FeedImageView, T.Image == UIImage {
-    func display(_ model: FeedImageViewModel<UIImage>) {
-        object?.display(model)
     }
 }
 
