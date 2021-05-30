@@ -14,7 +14,9 @@ protocol FeedViewControllerDelegate {
 public final class FeedViewController: UITableViewController, UITableViewDataSourcePrefetching, FeedLoadingView {
     var delegate: FeedViewControllerDelegate?
     var tableModel = [FeedImageCellController]() {
-        didSet { tableView.reloadData() }
+        didSet {
+            tableView.reloadData()
+        }
     } 
     
     override public func viewDidLoad() {
