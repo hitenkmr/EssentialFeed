@@ -8,18 +8,8 @@
 import Foundation
 import EssentialFeed
 
-//In MVP, a ViewModel is also called ViewDataor PresentableData, and it only holds the necessary data for the view rendering. It has no behaviour in MVP as it has in MVVM.
-
-struct FeedLoadingViewModel {
-    var isLoading: Bool
-}
-
 protocol FeedLoadingView {
     func display(viewModel: FeedLoadingViewModel)
-}
-
-struct FeedViewModel {
-    var feed: [FeedImage]
 }
 
 protocol FeedView {
