@@ -57,6 +57,7 @@
 		FA97F52F25F5C740008BDED6 /* CacheFeedUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA97F52E25F5C740008BDED6 /* CacheFeedUseCaseTests.swift */; };
 		FAE4BD002667E264007598E4 /* FeedImageDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFAAF74265BF98F001C19DA /* FeedImageDataLoader.swift */; };
 		FAE4BD072668FD21007598E4 /* RemoteFeedImageDataLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE4BD062668FD21007598E4 /* RemoteFeedImageDataLoaderTests.swift */; };
+		FAE4BD182669D46D007598E4 /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2495F825FE9A3200CA1B93 /* SharedTestHelpers.swift */; };
 		FAE8A7C9260094D300437339 /* Learning Outcomes.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE8A7C8260094D300437339 /* Learning Outcomes.swift */; };
 		FAE8A7D62600D38F00437339 /* FeedCachePolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE8A7D52600D38F00437339 /* FeedCachePolicy.swift */; };
 		FAF1FB712663574F002F1543 /* FeedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF1FB702663574F002F1543 /* FeedPresenter.swift */; };
@@ -878,6 +879,7 @@
 				FAE8A7C9260094D300437339 /* Learning Outcomes.swift in Sources */,
 				FAE8A7D62600D38F00437339 /* FeedCachePolicy.swift in Sources */,
 				FAE4BD002667E264007598E4 /* FeedImageDataLoader.swift in Sources */,
+				FAE4BD182669D46D007598E4 /* SharedTestHelpers.swift in Sources */,
 				FA97F50025F50C4A008BDED6 /* URLSessionHTTPClient.swift in Sources */,
 				FA7F6B32264A7D1C00CB8CE6 /* ManagedFeedImage.swift in Sources */,
 				FA97F50325F50C4A008BDED6 /* RemoteFeedLoader.swift in Sources */,

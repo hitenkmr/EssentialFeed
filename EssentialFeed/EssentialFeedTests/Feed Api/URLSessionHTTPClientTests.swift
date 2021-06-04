@@ -19,11 +19,11 @@ class URLSessionHTTPClientTests: XCTestCase {
     func test_getFromURL_PerformsGetRequesWithURL() {
         let exp = expectation(description: "wait for request")
         URLProtocolStub.observeRequests { (request) in
-            XCTAssertEqual(request.url, self.anyUrl())
+            XCTAssertEqual(request.url, anyURL())
             XCTAssertEqual(request.httpMethod, "GET")
             exp.fulfill()
         }
-        makeSUT().get(from: anyUrl(), completion: { _ in })
+        makeSUT().get(from: anyURL(), completion: { _ in })
         wait(for: [exp], timeout: 1.0)
     }
     
@@ -113,20 +113,12 @@ class URLSessionHTTPClientTests: XCTestCase {
         return receivedResult
     }
     
-    private func anyUrl() -> URL {
-        return URL(string: "http://any-url.com")!
-    }
-    
-    private func anyData() -> Data {
-        return  Data("any data".utf8)
-    }
-    
     private func nonHTTPUrlResposne() -> URLResponse {
-        return URLResponse(url: anyUrl(), mimeType: nil, expectedContentLength: 0, textEncodingName: nil)
+        return URLResponse(url: anyURL(), mimeType: nil, expectedContentLength: 0, textEncodingName: nil)
     }
     
     private func anyHTTPUrlResposne() -> HTTPURLResponse{
-        return HTTPURLResponse(url: anyUrl(), statusCode: 200, httpVersion: nil, headerFields: nil)!
+        return HTTPURLResponse(url: anyURL(), statusCode: 200, httpVersion: nil, headerFields: nil)!
     } 
     
     private func makeSUT(line : UInt = #line, file : StaticString = #file) -> HTTPClient {
