@@ -9,40 +9,19 @@ import Foundation
 import XCTest
 @testable import EssentialFeed
 
-class HttpClientSpy: HTTPClient {
-    
-    private var messages = [(url : URL, completion : (((HTTPClient.Result))->Void))]()
-    
-    var requestedUrls : [URL] {
-        return messages.map({ $0.url })
-    }
-    
-    func get(from url: URL, completion: @escaping (HTTPClient.Result) -> Void) {
-        messages.append((url, completion))
-    }
-    
-    func complete(with error : Error, index : Int = 0) {
-        messages[index].completion(HTTPClient.Result.failure(error))
-    }
-    
-    func complete(withStatusCode : Int, data : Data, at index : Int = 0) {
-        let response = HTTPURLResponse(url: messages[index].url, statusCode: withStatusCode, httpVersion: nil, headerFields: nil)!
-        messages[index].completion(.success((data, response)))
-    }
-}
 
 class LoadFeedFromRemoteUseCaseTests: XCTestCase {
     
     func test_init_doesNotRequestDataFromUrl() {
         let (_, client) = makeSUT()
-        XCTAssertTrue(client.requestedUrls.isEmpty)
+        XCTAssertTrue(client.requestedURLs.isEmpty)
     }
     
     func test_init_RequestsDataFromUrl() {
         let url = URL(string: "http://a-given-url.com")!
         let (sut, client) = makeSUT(url: url)
         sut.load { _ in }
-        XCTAssertEqual(client.requestedUrls, [url])
+        XCTAssertEqual(client.requestedURLs, [url])
     }
     
     func test_loadTwice_requestsDatFromUrlTwice() {
@@ -51,14 +30,14 @@ class LoadFeedFromRemoteUseCaseTests: XCTestCase {
         sut.load { _ in }
         sut.load { _ in }
         
-        XCTAssertEqual(client.requestedUrls, [url, url])
+        XCTAssertEqual(client.requestedURLs, [url, url])
     }
     
     func test_load_deliversErrorOnClientError() {
         let (sut, client) = makeSUT()
         expect(sut, toCompleteWith: failure(.connectivity)) {
             let clientError = NSError(domain: "Test", code: 0, userInfo: nil)
-            client.complete(with: clientError, index: 0)
+            client.complete(with: clientError, at: 0)
         }
     } 
     
@@ -102,7 +81,7 @@ class LoadFeedFromRemoteUseCaseTests: XCTestCase {
     
     func test_load_doesNotDeliverResultAfterSUTInatanceHasBeenDeallocated() {
         let url = URL(string: "http://some-url.com")!
-        let client = HttpClientSpy()
+        let client = HTTPClientSpy()
         var sut : RemoteFeedLoader? = RemoteFeedLoader(url: url, client: client)
         
         var capturedResults = [RemoteFeedLoader.Result]()
@@ -119,8 +98,8 @@ class LoadFeedFromRemoteUseCaseTests: XCTestCase {
         return RemoteFeedLoader.Result.failure(error)
     }
     
-    private func makeSUT(url : URL = URL(string: "http://a-url.com")!, file: StaticString = #filePath, line: UInt = #line) -> (sut : RemoteFeedLoader, client : HttpClientSpy) {
-        let client = HttpClientSpy()
+    private func makeSUT(url : URL = URL(string: "http://a-url.com")!, file: StaticString = #filePath, line: UInt = #line) -> (sut : RemoteFeedLoader, client : HTTPClientSpy) {
+        let client = HTTPClientSpy()
         let sut = RemoteFeedLoader(url: url, client: client)
         trackForMemoryLeaks(instance: sut)
         trackForMemoryLeaks(instance: client)
