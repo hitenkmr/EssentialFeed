@@ -11,6 +11,7 @@ import EssentialFeed
 class FeedImageDataStoreSpy: FeedImageDataStore {
     
     private var retrievalCompletions = [(FeedImageDataStore.RetrievalResult) -> Void]()
+    private var insertionCompletions = [(FeedImageDataStore.InsertionResult) -> Void]()
     
     enum Message: Equatable {
         case insert(data: Data, for: URL)
@@ -26,6 +27,7 @@ class FeedImageDataStoreSpy: FeedImageDataStore {
     
     func insert(_ data: Data, for url: URL, completion: @escaping (InsertionResult) -> Void) {
         receivedMessages.append(.insert(data: data, for: url))
+        insertionCompletions.append(completion)
     }
     
     func completeRetrieval(with error: Error, at index: Int = 0) {
@@ -34,5 +36,9 @@ class FeedImageDataStoreSpy: FeedImageDataStore {
     
     func completeRetrieval(with data: Data?, at index: Int = 0) {
         retrievalCompletions[index](.success(data))
+    }
+    
+    func completeInsertion(with error: Error, at index: Int = 0) {
+        insertionCompletions[index](.failure(error))
     }
 }
