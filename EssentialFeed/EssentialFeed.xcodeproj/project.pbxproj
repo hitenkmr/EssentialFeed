@@ -370,13 +370,13 @@
 		FA7F6B21264A7CED00CB8CE6 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				FA7F6B2B264A7D1C00CB8CE6 /* FeedStore.xcdatamodeld */,
 				FA7F6B29264A7D1C00CB8CE6 /* CoreDataFeedStore.swift */,
 				FA0E4A3926708A74001E4D65 /* CoreDataFeedStore+FeedStore.swift .swift */,
+				FA0E4A2D26707B58001E4D65 /* CoreDataFeedStore+FeedImageDataLoader.swift */,
 				FA7F6B2A264A7D1C00CB8CE6 /* CoreDataHelpers.swift */,
-				FA7F6B2B264A7D1C00CB8CE6 /* FeedStore.xcdatamodeld */,
 				FA7F6B28264A7D1C00CB8CE6 /* ManagedCache.swift */,
 				FA7F6B2D264A7D1C00CB8CE6 /* ManagedFeedImage.swift */,
-				FA0E4A2D26707B58001E4D65 /* CoreDataFeedStore+FeedImageDataLoader.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
