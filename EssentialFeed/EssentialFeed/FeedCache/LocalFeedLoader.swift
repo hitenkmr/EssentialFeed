@@ -11,7 +11,7 @@ public final class LocalFeedLoader {
     
     private let store: FeedStore
     private let currentDate: () -> Date
-
+    
     public init(store: FeedStore, currentDate: @escaping () -> Date = Date.init) {
         self.store = store
         self.currentDate = currentDate
@@ -21,7 +21,7 @@ public final class LocalFeedLoader {
 extension LocalFeedLoader {
     
     public typealias SaveResult = Result<Void, Error>
-
+    
     public func save(_ feed: [FeedImage], completion: @escaping (_ error: SaveResult) -> Void) {
         store.deleteCachedFeed { [weak self] deletionResult in
             guard let self = self else { return }
@@ -45,7 +45,7 @@ extension LocalFeedLoader {
 extension LocalFeedLoader: FeedLoader {
     
     public typealias LoadResult = FeedLoader.Result
-
+    
     public func load(completion: @escaping (_ result : LoadResult) -> Void) {
         self.store.retrieve { [weak self] cacheResult in
             guard let weak_self = self else { return }
@@ -65,17 +65,20 @@ extension LocalFeedLoader: FeedLoader {
 
 extension LocalFeedLoader {
     
-    public func validateCache() {
+    public typealias ValidationResult = Result<Void, Error>
+    
+    public func validateCache(completion: @escaping (ValidationResult) -> Void) {
         store.retrieve(completion: { [weak self] result in
             guard let weak_self = self else { return }
             switch result {
             case .failure:
-                weak_self.store.deleteCachedFeed(completion: { _ in })
+                weak_self.store.deleteCachedFeed(completion: completion)
                 
             case let.success(.some(cache)) where !FeedCachePolicy.validate(cache.timestamp, against: weak_self.currentDate()):
-                weak_self.store.deleteCachedFeed(completion: { _ in })
+                weak_self.store.deleteCachedFeed(completion: completion)
                 
-            case .success(.none), .success(.some(_)): break
+            case .success:
+                completion(.success(()))
             }
         })
     }
@@ -92,4 +95,4 @@ private extension Array where Element == LocalFeedImage {
         map({ FeedImage(id: $0.id, description: $0.description, location: $0.location, url: $0.url)})
     }
 }
- 
+
