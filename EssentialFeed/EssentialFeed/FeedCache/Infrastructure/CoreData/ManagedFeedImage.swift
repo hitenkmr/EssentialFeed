@@ -33,3 +33,13 @@ extension ManagedFeedImage {
 		return LocalFeedImage(id: id, description: imageDescription, location: location, url: url)
 	}
 }
+
+extension ManagedFeedImage {
+    static func first(with url: URL, in context: NSManagedObjectContext) throws -> ManagedFeedImage? {
+        let request = NSFetchRequest<ManagedFeedImage>(entityName: entity().name!)
+        request.predicate = NSPredicate(format: "%K = %@", argumentArray: [#keyPath(ManagedFeedImage.url), url])
+        request.returnsObjectsAsFaults = false
+        request.fetchLimit = 1
+        return try context.fetch(request).first
+    }
+}

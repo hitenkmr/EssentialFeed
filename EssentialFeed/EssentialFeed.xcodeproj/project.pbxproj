@@ -1477,7 +1477,7 @@
 				FA0E4A27266FD15C001E4D65 /* FeedStore2.xcdatamodel */,
 				FA7F6B2C264A7D1C00CB8CE6 /* FeedStore.xcdatamodel */,
 			);
-			currentVersion = FA7F6B2C264A7D1C00CB8CE6 /* FeedStore.xcdatamodel */;
+			currentVersion = FA0E4A27266FD15C001E4D65 /* FeedStore2.xcdatamodel */;
 			path = FeedStore.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
