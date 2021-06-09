@@ -20,7 +20,7 @@ public final class CoreDataFeedStore: FeedStore {
         perform { context in
             completion(Result {
                 try ManagedCache.find(in: context).map({
-                    return CachedFeed($0.localFeed, $0.timestamp)
+                    CachedFeed($0.localFeed, $0.timestamp)
                 })
             })
         }
