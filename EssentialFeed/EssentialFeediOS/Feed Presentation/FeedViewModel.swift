@@ -7,6 +7,6 @@
 
 import EssentialFeed
 
-struct FeedViewModel {
-    var feed: [FeedImage]
+public struct FeedViewModel {
+    public var feed: [FeedImage]
 }
