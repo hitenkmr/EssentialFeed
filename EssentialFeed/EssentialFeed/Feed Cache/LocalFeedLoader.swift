@@ -40,25 +40,25 @@ extension LocalFeedLoader: FeedCache {
 	}
 }
 
-extension LocalFeedLoader: FeedLoader {
-	public typealias LoadResult = FeedLoader.Result
+extension LocalFeedLoader {
+    public typealias LoadResult = Swift.Result<[FeedImage], Error>
 
-	public func load(completion: @escaping (LoadResult) -> Void) {
-		store.retrieve { [weak self] result in
-			guard let self = self else { return }
-			
-			switch result {
-			case let .failure(error):
-				completion(.failure(error))
+    public func load(completion: @escaping (LoadResult) -> Void) {
+        store.retrieve { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case let .failure(error):
+                completion(.failure(error))
 
-			case let .success(.some(cache)) where FeedCachePolicy.validate(cache.timestamp, against: self.currentDate()):
-				completion(.success(cache.feed.toModels()))
-				
-			case .success:
-				completion(.success([]))
-			}
-		}
-	}
+            case let .success(.some(cache)) where FeedCachePolicy.validate(cache.timestamp, against: self.currentDate()):
+                completion(.success(cache.feed.toModels()))
+                
+            case .success:
+                completion(.success([]))
+            }
+        }
+    }
 }
 
 extension LocalFeedLoader {
