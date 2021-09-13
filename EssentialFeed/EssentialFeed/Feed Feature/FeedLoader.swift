@@ -1,13 +1,11 @@
 //
-//  FeedLoader.swift
-//  EssentialFeed
-//
-//  Created by Hitender Kumar on 18/02/21.
+//  Copyright © 2021 Hitender Kumar. All rights reserved.
 //
 
 import Foundation
 
 public protocol FeedLoader {
-    typealias Result = Swift.Result<[FeedImage], Error>
-    func load(completion : @escaping (Result) -> Void)
-} 
+	typealias Result = Swift.Result<[FeedImage], Error>
+	
+	func load(completion: @escaping (Result) -> Void)
+}

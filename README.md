@@ -1,5 +1,11 @@
 # Essential Feed App – Image Feed Feature
 
+![](https://github.com/essentialdevelopercom/essential-feed-case-study/workflows/CI-iOS/badge.svg)
+
+![](https://github.com/essentialdevelopercom/essential-feed-case-study/workflows/CI-macOS/badge.svg)
+
+![](https://github.com/essentialdevelopercom/essential-feed-case-study/workflows/Deploy/badge.svg)
+
 ## BDD Specs
 
 ### Story: Customer requests to see their image feed
@@ -70,6 +76,29 @@ Given the customer doesn't have connectivity
 #### No connectivity – error course (sad path):
 1. System delivers connectivity error.
 
+---
+
+### Load Feed Image Data From Remote Use Case
+
+#### Data:
+- URL
+
+#### Primary course (happy path):
+1. Execute "Load Image Data" command with above data.
+2. System downloads data from the URL.
+3. System validates downloaded data.
+4. System delivers image data.
+
+#### Cancel course:
+1. System does not deliver image data nor error.
+
+#### Invalid data – error course (sad path):
+1. System delivers invalid data error.
+
+#### No connectivity – error course (sad path):
+1. System delivers connectivity error.
+
+---
 
 ### Load Feed From Cache Use Case
 
@@ -81,16 +110,51 @@ Given the customer doesn't have connectivity
 5. System delivers image feed.
 
 #### Retrieval error course (sad path):
-1. System deletes cache.
-2. System delivers error.
+1. System delivers error.
 
 #### Expired cache course (sad path): 
-1. System deletes cache.
-2. System delivers no feed images.
+1. System delivers no feed images.
 
 #### Empty cache course (sad path): 
 1. System delivers no feed images.
 
+---
+
+### Load Feed Image Data From Cache Use Case
+
+#### Data:
+- URL
+
+#### Primary course (happy path):
+1. Execute "Load Image Data" command with above data.
+2. System retrieves data from the cache.
+3. System delivers cached image data.
+
+#### Cancel course:
+1. System does not deliver image data nor error.
+
+#### Retrieval error course (sad path):
+1. System delivers error.
+
+#### Empty cache course (sad path):
+1. System delivers not found error.
+
+---
+
+### Validate Feed Cache Use Case
+
+#### Primary course:
+1. Execute "Validate Cache" command with above data.
+2. System retrieves feed data from cache.
+3. System validates cache is less than seven days old.
+
+#### Retrieval error course (sad path):
+1. System deletes cache.
+
+#### Expired cache course (sad path): 
+1. System deletes cache.
+
+---
 
 ### Cache Feed Use Case
 
@@ -111,6 +175,22 @@ Given the customer doesn't have connectivity
 #### Saving error course (sad path):
 1. System delivers error.
 
+---
+
+### Cache Feed Image Data Use Case
+
+#### Data:
+- Image Data
+
+#### Primary course (happy path):
+1. Execute "Save Image Data" command with above data.
+2. System caches image data.
+3. System delivers success message.
+
+#### Saving error course (sad path):
+1. System delivers error.
+
+---
 
 ## Flowchart
 
