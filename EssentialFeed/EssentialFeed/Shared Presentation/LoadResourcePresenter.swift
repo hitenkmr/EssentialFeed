@@ -22,17 +22,17 @@ public final class LoadResourcePresenter {
         self.errorView = errorView
     } 
     
-    public func didStartLoadingFeed() {
+    public func didStartLoading() {
         errorView.display(.noError)
         loadingView.display(FeedLoadingViewModel(isLoading: true))
     }
     
-    public func didFinishLoadingFeed(with feed: [FeedImage]) {
+    public func didFinishLoading(with feed: [FeedImage]) {
         feedView.display(FeedViewModel(feed: feed))
         loadingView.display(FeedLoadingViewModel(isLoading: false))
     }
     
-    public func didFinishLoadingFeed(with error: Error) {
+    public func didFinishLoading(with error: Error) {
         errorView.display(.error(message: feedLoadError))
         loadingView.display(FeedLoadingViewModel(isLoading: false))
     }
