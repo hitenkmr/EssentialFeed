@@ -162,31 +162,4 @@ extension Publisher {
     }
 }
 
-class ReporterTests: XCTestCase {
-    
-    func test_onReportingFail_reportHasBeenSendForReview() {
-        let remote = RemoteReporter()
-        let local = LocalReporter()
-        
-        //let reportWithFallbackComposite = ReporterWithFallbackComposite(real: remote, fallback: local)
-        var message: String?
-        //
-        //        reportWithFallbackComposite.report { result in
-        //            switch result {
-        //            case let .success(greetings):
-        //                message = greetings
-        //            case .failure:
-        //                XCTFail("Expected success got failure")
-        //            }
-        //        }
-        //
-        let pub = remote.reportPublisher()
-            .fallback(to: local.reportPublisher)
-        
-        let cancelabble = pub
-            .sink( receiveCompletion: { _ in }, receiveValue: { message = $0 })
-        
-        cancelabble.cancel()
-        XCTAssertEqual(message, "Good Luck from local!")
-    }
 }
