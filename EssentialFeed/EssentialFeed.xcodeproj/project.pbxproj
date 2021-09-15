@@ -94,6 +94,7 @@
 		BE3FFAD226F0AC8A00B22393 /* LoadResourcePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FFAD126F0AC8A00B22393 /* LoadResourcePresenter.swift */; };
 		BE3FFAD626F1D48E00B22393 /* SharedLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FFAD526F1D48E00B22393 /* SharedLocalizationTests.swift */; };
 		BE3FFAD726F1EA0D00B22393 /* Shared.strings in Resources */ = {isa = PBXBuildFile; fileRef = BE3FFAD926F1EA0D00B22393 /* Shared.strings */; };
+		BE3FFADD26F1F1F300B22393 /* SharedlocalizationTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FFADC26F1F1F300B22393 /* SharedlocalizationTestHelpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -222,6 +223,7 @@
 		BE3FFAD826F1EA0D00B22393 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Shared.strings; sourceTree = "<group>"; };
 		BE3FFADA26F1EA1300B22393 /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/Shared.strings; sourceTree = "<group>"; };
 		BE3FFADB26F1EA1400B22393 /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Shared.strings"; sourceTree = "<group>"; };
+		BE3FFADC26F1F1F300B22393 /* SharedlocalizationTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedlocalizationTestHelpers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -381,6 +383,7 @@
 			children = (
 				0844768E21FCB24E00439BE9 /* XCTestCase+MemoryLeakTracking.swift */,
 				081C0DB222491EEF00AC754E /* SharedTestHelpers.swift */,
+				BE3FFADC26F1F1F300B22393 /* SharedlocalizationTestHelpers.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -936,6 +939,7 @@
 				BE3FFACA26EF698000B22393 /* FeedImageDataMapperTests.swift in Sources */,
 				081C0DAF22491A2400AC754E /* ValidateFeedCacheUseCaseTests.swift in Sources */,
 				087148AC232BDF6900D6BE1A /* FeedPresenterTests.swift in Sources */,
+				BE3FFADD26F1F1F300B22393 /* SharedlocalizationTestHelpers.swift in Sources */,
 				087148C0232BF27700D6BE1A /* FeedImagePresenterTests.swift in Sources */,
 				087546922272381700542C32 /* XCTestCase+FailableInsertFeedStoreSpecs.swift in Sources */,
 				086044FE233E1A90005ECD22 /* CacheFeedImageDataUseCaseTests.swift in Sources */,
