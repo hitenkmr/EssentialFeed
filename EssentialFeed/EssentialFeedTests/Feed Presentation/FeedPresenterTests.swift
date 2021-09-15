@@ -50,6 +50,15 @@ class FeedPresenterTests: XCTestCase {
 			.display(isLoading: false)
 		])
 	}
+    
+    func test_map_createsViewModel() {
+        let feed = uniqueImageFeed().models
+        
+        let viewModel = FeedPresenter.map(feed)
+        
+        XCTAssertEqual(viewModel.feed, feed)
+    }
+
 	
 	// MARK: - Helpers
 
