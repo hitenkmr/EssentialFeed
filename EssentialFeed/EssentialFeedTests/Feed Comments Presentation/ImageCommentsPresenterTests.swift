@@ -50,6 +50,45 @@ class ImageCommentsPresenterTests: XCTestCase {
         ])
     }
     
+    func test_map_createsViewModelsForPortugueseBrazilLanguage() {
+        let now = Date()
+        let calendar = Calendar(identifier: .gregorian)
+        let locale = Locale(identifier: "pt_BR")
+        
+        let comments = [
+            ImageComment(
+                id: UUID(),
+                message: "a message",
+                createdAt: now.adding(minutes: -5),
+                username: "a username"),
+            ImageComment(
+                id: UUID(),
+                message: "another message",
+                createdAt: now.adding(days: -1),
+                username: "another username")
+        ]
+        
+        let viewModel = ImageCommentsPresenter.map(
+            comments,
+            currentDate: now,
+            calendar: calendar,
+            locale: locale
+        )
+        
+        XCTAssertEqual(viewModel.comments, [
+            ImageCommentViewModel(
+                message: "a message",
+                date: "há 5 minutos",
+                username: "a username"
+            ),
+            ImageCommentViewModel(
+                message: "another message",
+                date: "há 1 dia",
+                username: "another username"
+            )
+        ])
+    }
+    
     // MARK: - Helpers
     
     private func localized(_ key: String, file: StaticString = #file, line: UInt = #line) -> String {
