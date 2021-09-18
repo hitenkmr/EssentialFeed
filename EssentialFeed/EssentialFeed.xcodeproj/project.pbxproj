@@ -97,6 +97,7 @@
 		BE3FFADD26F1F1F300B22393 /* SharedlocalizationTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FFADC26F1F1F300B22393 /* SharedlocalizationTestHelpers.swift */; };
 		BE3FFADF26F1F64500B22393 /* ResourceLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FFADE26F1F64500B22393 /* ResourceLoadingView.swift */; };
 		BE3FFAE326F1F8B900B22393 /* ResourceErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE3FFAE226F1F8B900B22393 /* ResourceErrorView.swift */; };
+		BE42461726F5B70A0093FB92 /* CellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE42461626F5B70A0093FB92 /* CellController.swift */; };
 		BEA62EA626F30A1F003E1A52 /* ImageCommentsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA62EA526F30A1F003E1A52 /* ImageCommentsPresenterTests.swift */; };
 		BEA62EA926F30C2C003E1A52 /* ImageCommentsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA62EA826F30C2B003E1A52 /* ImageCommentsPresenter.swift */; };
 		BEA62EAD26F30E23003E1A52 /* ImageCommentsLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA62EAC26F30E23003E1A52 /* ImageCommentsLocalizationTests.swift */; };
@@ -247,6 +248,7 @@
 		BE3FFADC26F1F1F300B22393 /* SharedlocalizationTestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedlocalizationTestHelpers.swift; sourceTree = "<group>"; };
 		BE3FFADE26F1F64500B22393 /* ResourceLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceLoadingView.swift; sourceTree = "<group>"; };
 		BE3FFAE226F1F8B900B22393 /* ResourceErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceErrorView.swift; sourceTree = "<group>"; };
+		BE42461626F5B70A0093FB92 /* CellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellController.swift; sourceTree = "<group>"; };
 		BEA62EA526F30A1F003E1A52 /* ImageCommentsPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCommentsPresenterTests.swift; sourceTree = "<group>"; };
 		BEA62EA826F30C2B003E1A52 /* ImageCommentsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCommentsPresenter.swift; sourceTree = "<group>"; };
 		BEA62EAC26F30E23003E1A52 /* ImageCommentsLocalizationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCommentsLocalizationTests.swift; sourceTree = "<group>"; };
@@ -731,6 +733,7 @@
 			isa = PBXGroup;
 			children = (
 				08BB7EAA22C1425100F8B83C /* ListViewController.swift */,
+				BE42461626F5B70A0093FB92 /* CellController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1194,6 +1197,7 @@
 				086AEFBE23A7E75400EE8933 /* UITableView+HeaderSizing.swift in Sources */,
 				08A3F2B2232AA1C200127C15 /* ErrorView.swift in Sources */,
 				08A3F2BB232BA64700127C15 /* UIRefreshControl+Helpers.swift in Sources */,
+				BE42461726F5B70A0093FB92 /* CellController.swift in Sources */,
 				08B5EB5022CE328100FE8683 /* UIView+Shimmering.swift in Sources */,
 				0822D0F523058078004B3345 /* UITableView+Dequeueing.swift in Sources */,
 				08BB7EAB22C1425100F8B83C /* ListViewController.swift in Sources */,

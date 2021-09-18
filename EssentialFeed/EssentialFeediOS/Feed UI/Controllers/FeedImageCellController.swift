@@ -10,7 +10,7 @@ public protocol FeedImageCellControllerDelegate {
     func didCancelImageRequest()
 }
 
-public final class FeedImageCellController: NSObject, CellController {
+public final class FeedImageCellController: NSObject, UITableViewDataSource, UITableViewDelegate, UITableViewDataSourcePrefetching {
     
     public typealias ResourceViewModel = UIImage
     
