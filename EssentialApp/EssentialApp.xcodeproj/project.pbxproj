@@ -37,6 +37,8 @@
 		0895DAAC234B3F7E0031BB2D /* EssentialFeed.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0895DAA9234B3F7E0031BB2D /* EssentialFeed.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0895DAAD234B3F7E0031BB2D /* EssentialFeediOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0895DAAA234B3F7E0031BB2D /* EssentialFeediOS.framework */; };
 		0895DAAE234B3F7E0031BB2D /* EssentialFeediOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0895DAAA234B3F7E0031BB2D /* EssentialFeediOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BE42461D26F8B30A0093FB92 /* CommentsUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE42461C26F8B30A0093FB92 /* CommentsUIIntegrationTests.swift */; };
+		BE42461F26F8B4EC0093FB92 /* CommentsUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE42461E26F8B4EC0093FB92 /* CommentsUIComposer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +99,8 @@
 		0895DA9F234B3B980031BB2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0895DAA9234B3F7E0031BB2D /* EssentialFeed.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = EssentialFeed.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0895DAAA234B3F7E0031BB2D /* EssentialFeediOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = EssentialFeediOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE42461C26F8B30A0093FB92 /* CommentsUIIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsUIIntegrationTests.swift; sourceTree = "<group>"; };
+		BE42461E26F8B4EC0093FB92 /* CommentsUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsUIComposer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +170,7 @@
 				0895DA88234B3B950031BB2D /* SceneDelegate.swift */,
 				0835BF6C24850F9800A793D2 /* CombineHelpers.swift */,
 				08073B42238D2DF900A75DC6 /* FeedUIComposer.swift */,
+				BE42461E26F8B4EC0093FB92 /* CommentsUIComposer.swift */,
 				08073B40238D2DF900A75DC6 /* WeakRefVirtualProxy.swift */,
 				08073B41238D2DF900A75DC6 /* LoadResourcePresentationAdapter.swift */,
 				08073B43238D2DFA00A75DC6 /* FeedViewAdapter.swift */,
@@ -184,6 +189,7 @@
 				0832C9CF238D2811002314C9 /* SceneDelegateTests.swift */,
 				08073B5E238D2FF100A75DC6 /* FeedAcceptanceTests.swift */,
 				08073B5C238D2E2600A75DC6 /* FeedUIIntegrationTests.swift */,
+				BE42461C26F8B30A0093FB92 /* CommentsUIIntegrationTests.swift */,
 			);
 			path = EssentialAppTests;
 			sourceTree = "<group>";
@@ -306,6 +312,7 @@
 				0895DA89234B3B950031BB2D /* SceneDelegate.swift in Sources */,
 				08073B49238D2DFA00A75DC6 /* FeedViewAdapter.swift in Sources */,
 				0835BF6D24850F9800A793D2 /* CombineHelpers.swift in Sources */,
+				BE42461F26F8B4EC0093FB92 /* CommentsUIComposer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,6 +322,7 @@
 			files = (
 				08073B55238D2E1000A75DC6 /* FeedUIIntegrationTests+LoaderSpy.swift in Sources */,
 				082C00062359E4C6008927D3 /* SharedTestHelpers.swift in Sources */,
+				BE42461D26F8B30A0093FB92 /* CommentsUIIntegrationTests.swift in Sources */,
 				08073B57238D2E1000A75DC6 /* UIControl+TestHelpers.swift in Sources */,
 				08073B56238D2E1000A75DC6 /* FeedUIIntegrationTests+Assertions.swift in Sources */,
 				0832C9D0238D2811002314C9 /* SceneDelegateTests.swift in Sources */,
