@@ -38,6 +38,8 @@
 		0895DAAE234B3F7E0031BB2D /* EssentialFeediOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0895DAAA234B3F7E0031BB2D /* EssentialFeediOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		BE42461D26F8B30A0093FB92 /* CommentsUIIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE42461C26F8B30A0093FB92 /* CommentsUIIntegrationTests.swift */; };
 		BE42461F26F8B4EC0093FB92 /* CommentsUIComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE42461E26F8B4EC0093FB92 /* CommentsUIComposer.swift */; };
+		BE42462A26F8CFF80093FB92 /* FeedEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE42462926F8CFF80093FB92 /* FeedEndpointTests.swift */; };
+		BE42462D26F8D0270093FB92 /* ImageCommentsEndpointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE42462C26F8D0270093FB92 /* ImageCommentsEndpointTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +101,8 @@
 		0895DAAA234B3F7E0031BB2D /* EssentialFeediOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = EssentialFeediOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE42461C26F8B30A0093FB92 /* CommentsUIIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsUIIntegrationTests.swift; sourceTree = "<group>"; };
 		BE42461E26F8B4EC0093FB92 /* CommentsUIComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsUIComposer.swift; sourceTree = "<group>"; };
+		BE42462926F8CFF80093FB92 /* FeedEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedEndpointTests.swift; sourceTree = "<group>"; };
+		BE42462C26F8D0270093FB92 /* ImageCommentsEndpointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCommentsEndpointTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +185,8 @@
 		0895DA9C234B3B980031BB2D /* EssentialAppTests */ = {
 			isa = PBXGroup;
 			children = (
+				BE42462B26F8D0180093FB92 /* Image Comments API */,
+				BE42462826F8CFE90093FB92 /* Feed API */,
 				0895DA9F234B3B980031BB2D /* Info.plist */,
 				082C00022359E43F008927D3 /* Helpers */,
 				0832C9CF238D2811002314C9 /* SceneDelegateTests.swift */,
@@ -198,6 +204,22 @@
 				0895DAAA234B3F7E0031BB2D /* EssentialFeediOS.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BE42462826F8CFE90093FB92 /* Feed API */ = {
+			isa = PBXGroup;
+			children = (
+				BE42462926F8CFF80093FB92 /* FeedEndpointTests.swift */,
+			);
+			path = "Feed API";
+			sourceTree = "<group>";
+		};
+		BE42462B26F8D0180093FB92 /* Image Comments API */ = {
+			isa = PBXGroup;
+			children = (
+				BE42462C26F8D0270093FB92 /* ImageCommentsEndpointTests.swift */,
+			);
+			path = "Image Comments API";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -318,11 +340,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				08073B55238D2E1000A75DC6 /* FeedUIIntegrationTests+LoaderSpy.swift in Sources */,
+				BE42462D26F8D0270093FB92 /* ImageCommentsEndpointTests.swift in Sources */,
 				082C00062359E4C6008927D3 /* SharedTestHelpers.swift in Sources */,
 				BE42461D26F8B30A0093FB92 /* CommentsUIIntegrationTests.swift in Sources */,
 				08073B57238D2E1000A75DC6 /* UIControl+TestHelpers.swift in Sources */,
 				08073B56238D2E1000A75DC6 /* FeedUIIntegrationTests+Assertions.swift in Sources */,
 				0832C9D0238D2811002314C9 /* SceneDelegateTests.swift in Sources */,
+				BE42462A26F8CFF80093FB92 /* FeedEndpointTests.swift in Sources */,
 				08073B5B238D2E1000A75DC6 /* ListViewController+TestHelpers.swift in Sources */,
 				08073B53238D2E1000A75DC6 /* UIButton+TestHelpers.swift in Sources */,
 				0851CDAE239AB19000C19B1D /* InMemoryFeedStore.swift in Sources */,
