@@ -3,6 +3,7 @@
 //
 
 import CoreData
+import Metal
 
 @objc(ManagedFeedImage)
 class ManagedFeedImage: NSManagedObject {
@@ -15,7 +16,14 @@ class ManagedFeedImage: NSManagedObject {
 }
 
 extension ManagedFeedImage {
-	static func first(with url: URL, in context: NSManagedObjectContext) throws -> ManagedFeedImage? {
+    
+    static func data(with url: URL, in context: NSManagedObjectContext) throws -> Data? {
+        if let data = context.userInfo[url] as? Data { return data }
+        
+        return try first(with: url, in: context)?.data
+    }
+
+    static func first(with url: URL, in context: NSManagedObjectContext) throws -> ManagedFeedImage? {
 		let request = NSFetchRequest<ManagedFeedImage>(entityName: entity().name!)
 		request.predicate = NSPredicate(format: "%K = %@", argumentArray: [#keyPath(ManagedFeedImage.url), url])
 		request.returnsObjectsAsFaults = false
@@ -24,17 +32,26 @@ extension ManagedFeedImage {
 	}
 
 	static func images(from localFeed: [LocalFeedImage], in context: NSManagedObjectContext) -> NSOrderedSet {
-		return NSOrderedSet(array: localFeed.map { local in
+		let images = NSOrderedSet(array: localFeed.map { local in
 			let managed = ManagedFeedImage(context: context)
 			managed.id = local.id
 			managed.imageDescription = local.description
 			managed.location = local.location
 			managed.url = local.url
+            managed.data = context.userInfo[local.url] as? Data
 			return managed
 		})
+        context.userInfo.removeAllObjects()
+        return images
 	}
 	
 	var local: LocalFeedImage {
 		return LocalFeedImage(id: id, description: imageDescription, location: location, url: url)
 	}
+    
+    override func prepareForDeletion() {
+        super.prepareForDeletion()
+        
+        managedObjectContext?.userInfo[url] = data
+    }
 }
