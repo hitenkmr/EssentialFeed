@@ -9,7 +9,7 @@ import Combine
 
 extension FeedUIIntegrationTests {
     
-    class LoaderSpy: FeedImageDataLoader {
+    class LoaderSpy {
         
         // MARK: - FeedLoader
         
@@ -24,7 +24,11 @@ extension FeedUIIntegrationTests {
             feedRequests.append(publisher)
             return publisher.eraseToAnyPublisher()
         }
-
+        
+        func completeFeedLoadingWithError(at index: Int = 0) {
+            feedRequests[index].send(completion: .failure(anyNSError()))
+        }
+        
         func completeFeedLoading(with feed: [FeedImage] = [], at index: Int = 0) {
             feedRequests[index].send(Paginated(items: feed, loadMorePublisher: { [weak self] in
                 self?.loadMorePublisher() ?? Empty().eraseToAnyPublisher()
@@ -32,11 +36,8 @@ extension FeedUIIntegrationTests {
             feedRequests[index].send(completion: .finished)
         }
         
-        func completeFeedLoadingWithError(at index: Int = 0) {
-            feedRequests[index].send(completion: .failure(anyNSError()))
-        }
-        
         // MARK: - LoadMoreFeedLoader
+        
         private var loadMoreRequests = [PassthroughSubject<Paginated<FeedImage>, Error>]()
         
         var loadMoreCallCount: Int {
@@ -51,26 +52,19 @@ extension FeedUIIntegrationTests {
         
         func completeLoadMore(with feed: [FeedImage] = [], lastPage: Bool = false, at index: Int = 0) {
             loadMoreRequests[index].send(Paginated(
-                items: feed,
-                loadMorePublisher: lastPage ? nil : { [weak self] in
-                    self?.loadMorePublisher() ?? Empty().eraseToAnyPublisher()
-                }))
+                                            items: feed,
+                                            loadMorePublisher: lastPage ? nil : { [weak self] in
+                                                self?.loadMorePublisher() ?? Empty().eraseToAnyPublisher()
+                                            }))
         }
-
+        
         func completeLoadMoreWithError(at index: Int = 0) {
             loadMoreRequests[index].send(completion: .failure(anyNSError()))
         }
         
         // MARK: - FeedImageDataLoader
         
-        private struct TaskSpy: FeedImageDataLoaderTask {
-            let cancelCallback: () -> Void
-            func cancel() {
-                cancelCallback()
-            }
-        }
-        
-        private var imageRequests = [(url: URL, completion: (FeedImageDataLoader.Result) -> Void)]()
+        private var imageRequests = [(url: URL, publisher: PassthroughSubject<Data, Error>)]()
         
         var loadedImageURLs: [URL] {
             return imageRequests.map { $0.url }
@@ -78,17 +72,21 @@ extension FeedUIIntegrationTests {
         
         private(set) var cancelledImageURLs = [URL]()
         
-        func loadImageData(from url: URL, completion: @escaping (FeedImageDataLoader.Result) -> Void) -> FeedImageDataLoaderTask {
-            imageRequests.append((url, completion))
-            return TaskSpy { [weak self] in self?.cancelledImageURLs.append(url) }
+        func loadImageDataPublisher(from url: URL) -> AnyPublisher<Data, Error> {
+            let publisher = PassthroughSubject<Data, Error>()
+            imageRequests.append((url, publisher))
+            return publisher.handleEvents(receiveCancel: { [weak self] in
+                self?.cancelledImageURLs.append(url)
+            }).eraseToAnyPublisher()
         }
         
         func completeImageLoading(with imageData: Data = Data(), at index: Int = 0) {
-            imageRequests[index].completion(.success(imageData))
+            imageRequests[index].publisher.send(imageData)
+            imageRequests[index].publisher.send(completion: .finished)
         }
         
         func completeImageLoadingWithError(at index: Int = 0) {
-            imageRequests[index].completion(.failure(anyNSError()))
+            imageRequests[index].publisher.send(completion: .failure(anyNSError()))
         }
     }
     
