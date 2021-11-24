@@ -46,7 +46,7 @@ class LoadFeedImageDataFromCacheUseCaseTests: XCTestCase {
 		expect(sut, toCompleteWith: .success(foundData), when: {
 			store.completeRetrieval(with: foundData)
 		})
-	} 
+	}
 	
 	// MARK: - Helpers
 	
